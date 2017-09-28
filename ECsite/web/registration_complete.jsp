@@ -12,6 +12,13 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div>
+            <table>
+            <tr><th>名前</th><td>${requestScope.udb.name}</td></tr>
+        <tr><th>パスワード</th><td>${requestScope.udb.password}</td></tr>
+        <tr><th>メールアドレス</th><td>${requestScope.udb.mail}</td></tr>
+        <tr><th>住所</th><td>${requestScope.udb.address}</td></tr>
+        <tr><td colspan="2">上記内容で登録いたしました</td></tr></table>
+        </div>
     </body>
 </html>

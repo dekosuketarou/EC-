@@ -16,6 +16,7 @@ public class UserDataBeans {
     private String address="";
 
     
+    
     public void setName(String name){
         this.name=name;
     }
@@ -42,5 +43,11 @@ public class UserDataBeans {
     public String getAddress(){
         return address;
     }
-    
+    public void DTOMapping(UserDataDTO udd){
+        udd.setName(this.name);
+        udd.setPassword(this.password);
+        udd.setMail(this.mail);
+        udd.setAddress(this.address);
+        
+    }
 }

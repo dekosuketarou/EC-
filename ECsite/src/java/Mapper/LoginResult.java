@@ -5,10 +5,12 @@
  */
 package Mapper;
 
-import Data.UserDataBeans;
+import Data.DAO;
+import Data.UserDataDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,9 +18,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author guest1Day
+ * @author DEKO
  */
-public class RegistrationConfirm extends HttpServlet {
+public class LoginResult extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,26 +33,24 @@ public class RegistrationConfirm extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession(true);
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session=request.getSession();
             request.setCharacterEncoding("UTF-8");
-            UserDataBeans udb = new UserDataBeans();
-            
-            udb.setName(request.getParameter("name"));
-            if(request.getParameter("password")!=null){
-                udb.setPassword(request.getParameter("password"));
-            }
-            udb.setMail(request.getParameter("mail"));
-            udb.setAddress(request.getParameter("address"));
-            
-            session.setAttribute("udb",udb);
-            if(!udb.getName().equals("")&&!udb.getPassword().equals("")&&!udb.getMail().equals("")&&!udb.getAddress().equals("")){
-            request.getRequestDispatcher("registration_confirm.jsp").forward(request, response);
-            }else{
-            request.getRequestDispatcher("registration.jsp").forward(request, response);
+            UserDataDTO udd=DAO.getInstance().login(request.getParameter("name"),request.getParameter("password"));
+            if(udd.getDeleteFlg()==1){
                 
+            }else if(udd.getDeleteFlg()==0){
+                Cookie c1 = new Cookie("name",udd.getName());
+                Cookie c2 = new Cookie("password", udd.getPassword());
+                response.addCookie(c1);
+                response.addCookie(c2);
+                session.setAttribute("userdata",udd);
             }
+                request.getRequestDispatcher(session.getAttribute("return").toString()).forward(request, response);
+            
+            
+            
         }
     }
 

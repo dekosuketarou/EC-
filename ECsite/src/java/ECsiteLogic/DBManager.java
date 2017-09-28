@@ -14,17 +14,19 @@ import java.sql.SQLException;
  * @author guest1Day
  */
 public class DBManager {
+    static String dburl="jdbc:mysql://localhost:3306/ECsite";
+    static String jdbc="com.mysql.jdbc.Driver";
+    static String dbuser="root";
+    static String dbpassword="";
+    
     public static DBManager getInstance(){
         return new DBManager();
     }
     public static Connection getConnection(){
         Connection con=null;
-        String url="jdbc:mysql://localhost:3306/ECsite";
-        String user="root";
-        String password="";
         try{
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con=DriverManager.getConnection(url, user, password);
+            Class.forName(jdbc).newInstance();
+            con=DriverManager.getConnection(dburl, dbuser, dbpassword);
             System.out.println("接続かんりょうしました");
             
         }catch(ClassNotFoundException e){

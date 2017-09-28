@@ -12,6 +12,11 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <form action="Login">
+            <input type="hidden" value="top.jsp" name="return">
+            <input type="submit" value="ログイン">
+        </form>
+
         <form action="Search">
             <input type="text" name="query">
             <input type="hidden" value="0" name="offset">

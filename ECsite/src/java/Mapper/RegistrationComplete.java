@@ -5,9 +5,14 @@
  */
 package Mapper;
 
+import Data.DAO;
 import Data.UserDataBeans;
+import Data.UserDataDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +21,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author guest1Day
+ * @author DEKO
  */
-public class RegistrationConfirm extends HttpServlet {
+public class RegistrationComplete extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,27 +35,18 @@ public class RegistrationConfirm extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session=request.getSession();
-            request.setCharacterEncoding("UTF-8");
-            UserDataBeans udb = new UserDataBeans();
+            UserDataBeans udb=(UserDataBeans)session.getAttribute("udb");
+            UserDataDTO udd=new UserDataDTO();
+            udb.DTOMapping(udd);
+            DAO.getInstance().UDInsert(udd);
+            request.setAttribute("udb", udb);
+            session.invalidate();
             
-            udb.setName(request.getParameter("name"));
-            if(request.getParameter("password")!=null){
-                udb.setPassword(request.getParameter("password"));
-            }
-            udb.setMail(request.getParameter("mail"));
-            udb.setAddress(request.getParameter("address"));
-            
-            session.setAttribute("udb",udb);
-            if(!udb.getName().equals("")&&!udb.getPassword().equals("")&&!udb.getMail().equals("")&&!udb.getAddress().equals("")){
-            request.getRequestDispatcher("registration_confirm.jsp").forward(request, response);
-            }else{
-            request.getRequestDispatcher("registration.jsp").forward(request, response);
-                
-            }
+            request.getRequestDispatcher("registration_complete.jsp").forward(request, response);
         }
     }
 
@@ -66,7 +62,11 @@ public class RegistrationConfirm extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistrationComplete.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -80,7 +80,11 @@ public class RegistrationConfirm extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistrationComplete.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
