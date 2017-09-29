@@ -43,8 +43,8 @@ public class RegistrationComplete extends HttpServlet {
             UserDataDTO udd=new UserDataDTO();
             udb.DTOMapping(udd);
             DAO.getInstance().UDInsert(udd);
-            request.setAttribute("udb", udb);
-            session.invalidate();
+            request.setAttribute("registration", udb);
+            session.removeAttribute("registration");
             
             request.getRequestDispatcher("registration_complete.jsp").forward(request, response);
         }

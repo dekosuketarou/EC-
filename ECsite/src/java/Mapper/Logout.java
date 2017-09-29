@@ -5,8 +5,6 @@
  */
 package Mapper;
 
-import Data.ShopDataBeans;
-import ECsiteLogic.LogicBeans;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author guest1Day
  */
-public class Item extends HttpServlet {
+public class Logout extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,14 +32,9 @@ public class Item extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            request.setCharacterEncoding("UTF-8");
-            HttpSession session = request.getSession();
-             ShopDataBeans sdb=LogicBeans.getInstance().oneSearch(request.getParameter("code"));
-             
-            session.setAttribute("oneSearch",sdb);
-            request.getRequestDispatcher("item.jsp").forward(request, response);
-        } catch (Exception e) {
-            System.out.print(e);
+            HttpSession session=request.getSession();
+            session.invalidate();
+            request.getRequestDispatcher("top.jsp").forward(request, response);
         }
     }
 

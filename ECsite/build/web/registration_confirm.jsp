@@ -13,10 +13,10 @@
     </head>
     <body>
         <table>
-            <tr><th>名前</th><td>${sessionScope.udb.name}</td></tr>
-            <tr><th>パスワード</th><td>${sessionScope.udb.password}</td></tr>
-            <tr><th>メールアドレス</th><td>${sessionScope.udb.mail}</td></tr>
-            <tr><th>住所</th><td>${sessionScope.udb.address}</td></tr>
+            <tr><th>名前</th><td>${sessionScope.registration.name}</td></tr>
+            <tr><th>パスワード</th><td>${sessionScope.registration.password}</td></tr>
+            <tr><th>メールアドレス</th><td>${sessionScope.registration.mail}</td></tr>
+            <tr><th>住所</th><td>${sessionScope.registration.address}</td></tr>
             <tr><td colspan="2">上記内容で登録しますがよろしいでしょうか？</td></tr>
             <tr><td>
                     <form action="RegistrationComplete">

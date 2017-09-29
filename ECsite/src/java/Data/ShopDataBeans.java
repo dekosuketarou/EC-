@@ -12,20 +12,14 @@ package Data;
 public class ShopDataBeans {
     private String item;
     private String desc;
-    private String price;
-    private int type;
+    private int price;
+    private int type=1;//初期値１　通常発送
     private String itemCode;
     private String imageURL;
-    
-    static String hit="";
-    public ShopDataBeans(){
-        item="";
-        desc="";
-        price="";
-        itemCode="";
-        imageURL="";
-        type=1;//初期値１　通常発送
-    }
+    private double  reviewRate;
+    private int reviewCount;
+    static String hit;
+ 
     
 
 
@@ -36,8 +30,12 @@ public class ShopDataBeans {
         this.desc=desc;
     }
     public void setPrice(String price){
-        this.price=price;
-        
+        try {
+            this.price=Integer.parseInt(price);
+		
+	} catch (NumberFormatException e) {
+            System.out.print(e);
+	}
     }
     public void setItemCode(String itemCode){
         this.itemCode=itemCode;
@@ -46,15 +44,27 @@ public class ShopDataBeans {
     public void setImageURL(String imageURL){
         this.imageURL=imageURL;
     }
-    
-    
+    public void setReviewRate(String reviewRate){
+        try{
+            this.reviewRate=Double.parseDouble(reviewRate);
+        } catch (NumberFormatException e) {
+            System.out.print(e);
+	}
+    }
+    public void setReviewCount(String reviewCount){
+        try{
+            this.reviewCount=Integer.parseInt(reviewCount);
+        }catch(NumberFormatException e){
+            System.out.print(e);
+        }
+    }
     public String getItem(){
         return item;
     }
     public String getDesc(){
         return desc;
     }
-    public String getPrice(){
+    public int getPrice(){
         return price;
     }
     public String getItemCode(){
@@ -63,7 +73,12 @@ public class ShopDataBeans {
     public String getImageURL(){
         return imageURL;
     }
-    
+    public double getReviewRate(){
+        return reviewRate;
+    }
+    public int getReviewCount(){
+        return reviewCount;
+    }
     
     
 }

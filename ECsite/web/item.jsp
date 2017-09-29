@@ -4,23 +4,38 @@
     Author     : DEKO
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="ECsiteLogic.MenuHelper"%>
 <%@page import="Data.ShopDataBeans"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        
-        <%
-        ShopDataBeans sdb=(ShopDataBeans)request.getAttribute("oneSearch");
-        
-        %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
     <body>
-        <table>
-            <tr><td rowspan="2"><img src=<%=sdb.getImageURL()%> ></td><td><%=sdb.getItem()%></td></tr>
-            <tr><td><%=sdb.getDesc()%></td></tr>
-        </table>
-    </body>
+    <c:choose>
+        <c:when test="${sessionScope.login!=null}">
+            <%=MenuHelper.getInstance().getUpMenu()%>
+        </c:when>
+        <c:otherwise>
+            <form action="Login" method="POST">
+                <input type="hidden" value="search.jsp" name="return">
+                <input type="submit" value="ログインページへ">
+            </form>
+        </c:otherwise>
+    </c:choose>
+        <hr>
+    <table width="800px">
+        <tr><td rowspan="3"><img src="${sessionScope.oneSearch.getImageURL()}" width="200px"></td><td>${sessionScope.oneSearch.getItem()}</td></tr>
+        <tr><td>価格：${sessionScope.oneSearch.getPrice()}円</td></tr>
+        <tr><td>${sessionScope.oneSearch.getReviewCount()}人のレビュー平均値は${sessionScope.oneSearch.getReviewRate()}です</td></tr>
+        <tr><td colspan="2">${sessionScope.oneSearch.getDesc()}<td></tr>
+        <tr><td colspan="2">
+                <form action="Add?itemcode=${sessionScope.oneSearch.getItemCode()}">
+                    <input type="submit" value="商品を買い物かごへ入れる"></form>
+            <td></tr>
+    </table>
+</body>
 </html>

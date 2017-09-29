@@ -16,6 +16,7 @@ import java.net.URL;
 import static java.net.URLEncoder.encode;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -28,7 +29,8 @@ public class LogicBeans {
     }
 
     //request.getParameter("query")
-    public HttpServletRequest searchItem(HttpServletRequest request) throws IOException {
+    public void searchItem(HttpServletRequest request) throws IOException {
+        HttpSession session = request.getSession();
         ArrayList<ShopDataBeans> AL = new ArrayList<>();
         String shopAPI = "https://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch";
         String appid = "?appid=dj00aiZpPVNLU1d6RGVMdjdyaiZzPWNvbnN1bWVyc2VjcmV0Jng9NDM-";
@@ -55,16 +57,15 @@ public class LogicBeans {
             AL.add(sdb);
         }
 
-        request.setAttribute("hit", rootNode.get("ResultSet").get("totalResultsAvailable"));
-        request.setAttribute("searchResult", AL);
-        return request;
+        session.setAttribute("hit", rootNode.get("ResultSet").get("totalResultsAvailable").textValue());
+        session.setAttribute("searchResult", AL);
     }
 
     public ShopDataBeans oneSearch(String code) throws IOException {
         String shopAPI = "https://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemLookup";
         String appid = "?appid=dj00aiZpPVNLU1d6RGVMdjdyaiZzPWNvbnN1bWVyc2VjcmV0Jng9NDM-";
         String responsegroup = "&responsegroup=medium";
-        String imgSize="&image_size=300";
+        String imgSize="&image_size=300";//76/106/132/146/300/600 サイズ指定
         String itemcode = "&itemcode=" + code;
 
         URL url = new URL(shopAPI + appid + itemcode + responsegroup+imgSize);
@@ -84,6 +85,8 @@ public class LogicBeans {
         sdb.setDesc(result.get("Description").textValue());
         sdb.setImageURL(result.get("ExImage").get("Url").textValue());
         sdb.setPrice(result.get("Price").get("_value").textValue());
+        sdb.setReviewRate(result.get("Review").get("Rate").textValue());
+        sdb.setReviewCount(result.get("Review").get("Count").textValue());
 
         return sdb;
     }

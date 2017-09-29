@@ -33,7 +33,6 @@ public class Top extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            HttpSession session = request.getSession(true);
 
             request.getRequestDispatcher("top.jsp").forward(request, response);            
         }

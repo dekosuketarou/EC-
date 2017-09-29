@@ -44,7 +44,7 @@ public class RegistrationConfirm extends HttpServlet {
             udb.setMail(request.getParameter("mail"));
             udb.setAddress(request.getParameter("address"));
             
-            session.setAttribute("udb",udb);
+            session.setAttribute("registration",udb);
             if(!udb.getName().equals("")&&!udb.getPassword().equals("")&&!udb.getMail().equals("")&&!udb.getAddress().equals("")){
             request.getRequestDispatcher("registration_confirm.jsp").forward(request, response);
             }else{

@@ -4,7 +4,9 @@
     Author     : DEKO
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="ECsiteLogic.MenuHelper" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,11 +14,18 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="Login">
-            <input type="hidden" value="top.jsp" name="return">
-            <input type="submit" value="ログイン">
-        </form>
-
+     <c:choose>
+        <c:when test="${sessionScope.login!=null}">
+                <%=MenuHelper.getInstance().getUpMenu()%>
+        </c:when>
+        <c:otherwise> 
+            <form action="Login" method="POST">
+                <input type="hidden" value="top.jsp" name="return">
+                <input type="submit" value="ログインページへ">
+            </form>
+        </c:otherwise>
+    </c:choose>
+        <hr>
         <form action="Search">
             <input type="text" name="query">
             <input type="hidden" value="0" name="offset">
