@@ -33,6 +33,8 @@ public class FormReset extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
+            //フォームデータのリセットのためのサーブレット
+            //registration.jspよりアクセス可能
             session.removeAttribute("registration");
             request.getRequestDispatcher("registration.jsp").forward(request, response);
         }

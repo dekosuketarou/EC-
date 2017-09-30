@@ -33,14 +33,20 @@ public class Add extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            
             HttpSession session=request.getSession();
                     
             request.setCharacterEncoding("UTF-8");
+            
+            //商品コードを格納するクラスCartItem
             CartItem cartItem = new CartItem();
+            //session情報に登録している場合はcartItemの情報を取得し、
             if(session.getAttribute("cartItem")!=null){
                 cartItem=(CartItem)session.getAttribute("cartItem");
             }
+            //その後「カートに追加」により追加された商品のコードを新たに格納する
             cartItem.setCartItem(request.getParameter("code"));
+            //格納した後、cartItem情報をsessionに上書きする
             session.setAttribute("cartItem",cartItem);
             request.getRequestDispatcher("add.jsp").forward(request, response);
             

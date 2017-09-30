@@ -35,8 +35,11 @@ public class Remove extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             HttpSession session=request.getSession();
             request.setCharacterEncoding("UTF-8");
+            //カゴの中に入れた商品情報を取得
             CartItem cartItem=(CartItem)session.getAttribute("cartItem");
+            //「削除」により商品から除外するものをクエストリングによりindex番号を取得、その後商品配列から除外
             cartItem.getCartItem().remove(Integer.parseInt(request.getParameter("remove")));
+            //除外した後に更新した情報を登録
             session.setAttribute("cartItem",cartItem);
             request.getRequestDispatcher("Cart").forward(request, response);
         }

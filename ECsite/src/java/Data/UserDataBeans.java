@@ -6,8 +6,8 @@
 package Data;
 
 /**
- *
- * @author DEKO
+ * ユーザー登録したときに情報を格納するためのBeans
+ * UserDataDTOにデータベースに対応した型に変換するメソッドを備えている:DTOMapping()
  */
 public class UserDataBeans {
     private String name="";

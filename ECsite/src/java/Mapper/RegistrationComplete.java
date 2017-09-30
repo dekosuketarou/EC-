@@ -39,11 +39,15 @@ public class RegistrationComplete extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session=request.getSession();
+            //registrationで入力したフォーム情報を取得しUserDataBeans型に変換
             UserDataBeans udb=(UserDataBeans)session.getAttribute("registration");
             UserDataDTO udd=new UserDataDTO();
             udb.DTOMapping(udd);
+            //その後データベースに登録する
             DAO.getInstance().UDInsert(udd);
+            //登録後、登録情報をユーザーに表示するためrequestScopeにユーザー情報を登録
             request.setAttribute("registration", udb);
+            //登録後、登録に利用したフォーム情報を破棄する
             session.removeAttribute("registration");
             
             request.getRequestDispatcher("registration_complete.jsp").forward(request, response);

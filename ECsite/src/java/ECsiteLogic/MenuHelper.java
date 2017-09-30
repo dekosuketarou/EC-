@@ -9,6 +9,9 @@ package ECsiteLogic;
  *
  * @author guest1Day
  */
+
+//jspの記述修正簡略化のためのメソッド
+//それぞれのgetterメソッドにより各ページに遷移可能
 public class MenuHelper {
     final String login="<form action=\"Login\" method=\"POST\"><input type=\"submit\" value=\"ログインページ\"></form>";
     final String logout="<form action=\"Logout\" method=\"POST\"><input type=\"submit\" value=\"ログアウト\"></form>";

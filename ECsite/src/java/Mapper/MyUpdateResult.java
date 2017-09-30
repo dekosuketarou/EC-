@@ -40,8 +40,9 @@ public class MyUpdateResult extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
             request.setCharacterEncoding("UTF-8");
+            
             UserDataBeans udb = new UserDataBeans();
-
+            //更新情報を取得し、データベースに対応した型に変換する
             udb.setName(request.getParameter("name"));
             udb.setPassword(request.getParameter("password"));
             udb.setMail(request.getParameter("mail"));
@@ -50,8 +51,9 @@ public class MyUpdateResult extends HttpServlet {
             UserDataDTO udd = new UserDataDTO();
 
             udb.DTOMapping(udd);
-
+            //更新情報を格納したUserDataBeansを引数に、UDUpdateメソッドを使用する
             DAO.getInstance().UDUpdate(udd);
+            //更新したユーザー情報を上書きする
             session.setAttribute("login", udd);
             request.getRequestDispatcher("myupdate_result.jsp").forward(request, response);
         } catch (SQLException ex) {

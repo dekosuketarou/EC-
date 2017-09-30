@@ -6,8 +6,8 @@
 package Data;
 
 /**
- *
- * @author DEKO
+ * 商品情報を格納するためのBeans
+ * データーベースにアクセスできる型に対応している
  */
 public class ShopDataBeans {
     private String item;

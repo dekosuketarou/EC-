@@ -8,8 +8,7 @@ package Data;
 import java.util.ArrayList;
 
 /**
- *
- * @author guest1Day
+ *本クラスは商品コードを配列として格納するクラスである
  */
 public class CartItem {
     //カートに追加ボタンを押した後にcartItemにitemCodeが格納される

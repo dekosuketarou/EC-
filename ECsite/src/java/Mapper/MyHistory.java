@@ -42,10 +42,13 @@ public class MyHistory extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
             HttpSession session =request.getSession();
         try (PrintWriter out = response.getWriter()) {
+            //ユーザー情報を引き渡すことにより、データベースにアクセスして購入履歴を調べる
             CartItem cartItem = DAO.getInstance().getMyHistory((UserDataDTO)session.getAttribute("login"));
-            
+            //ShopDataBeansの情報配列を作るためArrayListを宣言
             ArrayList<ShopDataBeans> sdbAL =new ArrayList<>();
             if(cartItem!=null){
+                //データベースに購入履歴があればcartItemにitemCodeが入るので
+                //その情報を利用してitemCodeを商品情報に変換する
                 sdbAL=LogicBeans.getInstance().cartSearch(cartItem);
             }
             session.setAttribute("myhistory", sdbAL);

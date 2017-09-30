@@ -6,6 +6,7 @@
 
 <%@page import="ECsiteLogic.MenuHelper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,7 +19,7 @@
         <%=MenuHelper.getInstance().getTopMenu()%>
         <hr>
         <form action="MyUpdateResult" method="post">
-            <table width="80%" >
+            <table>
                 <tr><th>名前</th><td><input type="text" name="name" required="required" value="${sessionScope.login.name}"></td></tr>
                 <tr><th>パスワード</th><td><input type="text" required="required" name="password" value="${sessionScope.login.password}"></td></tr>
                 <tr><th>メールアドレス</th><td><input type="email" name="mail" required="required" value="${sessionScope.login.mail}"></td></tr>

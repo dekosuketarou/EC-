@@ -9,10 +9,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="Data.ShopDataBeans"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    ArrayList<ShopDataBeans> sdbAL = (ArrayList<ShopDataBeans>) session.getAttribute("sdbAL");
-    int price = 0;
-%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,15 +27,16 @@
                 <c:choose>
                     <c:when test="${sessionScope.sdbAL.size()!=0&&sessionScope.sdbAL.size()!=null}">
                         <table>
-                            <%for (int i = 0; i < sdbAL.size(); i++) {%>
-                            <tr><td rowspan="2"><form action="Remove"><input type="hidden" name="remove" value="<%=i%>"><input type="submit" value="削除"></form></td>
-                                <td rowspan="2"><img src="<%=sdbAL.get(i).getImageURL()%>" width="100"></td><td><%=sdbAL.get(i).getItem()%></td></tr>
-                            <tr><td><%=sdbAL.get(i).getPrice()%>円(税込み)</td></tr>
-                            <%price += sdbAL.get(i).getPrice();}%>
-                            <tr><th colspan="2">合計金額は<%=price%>円です</th></tr>
+                            <c:forEach items="${sessionScope.sdbAL}" var="sdb" varStatus="index">
+                                <tr><td rowspan="2"><form action="Remove"><input type="hidden" name="remove" value="${index.index}"><input type="submit" value="削除"></form></td>
+                                    <td rowspan="2"><img src="${sdb.imageURL}" width="100"></td><td>${sdb.item}</td></tr>
+                                <tr><td>${sdb.price}円(税込み)</td></tr>
+                                <c:set var="total">${total+sdb.price}</c:set>
+                            </c:forEach>
+                            <tr><th colspan="2">合計金額は${total}円です</th></tr>
                             <tr><td colspan="2">
                                     <form action="BuyConfirm" method="post">
-                                        <input type="hidden" name="price" value="<%=price%>">
+                                        <input type="hidden" name="price" value="total">
                                         <input type="submit" value="購入する">
                                     </form>
                                 </td></tr>

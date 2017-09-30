@@ -34,6 +34,7 @@ public class Login extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
+            //クエストリングを利用して接続もとのURI情報を登録
             session.setAttribute("return", request.getParameter("return"));
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }

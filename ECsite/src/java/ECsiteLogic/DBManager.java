@@ -13,6 +13,15 @@ import java.sql.SQLException;
  *
  * @author guest1Day
  */
+
+/**
+ * データベース接続に関するメソッド
+ * JDBCやデータベースのパスをここで設定する
+ * データベースのアカウント、パスワードをこのメソッドで指定する
+ * 
+ * DBManager.getInstance().getConnection()により
+ * 接続済みのConnectionが戻り値として取得できる
+ */
 public class DBManager {
     static String dburl="jdbc:mysql://localhost:3306/kagoyume_db";
     static String jdbc="com.mysql.jdbc.Driver";

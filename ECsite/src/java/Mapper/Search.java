@@ -35,11 +35,17 @@ public class Search extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
             request.setCharacterEncoding("UTF-8");
-            session.setAttribute("keyword",request.getParameter("query"));
-            LogicBeans.getInstance().searchItem(request);
-             
-            
-       request.getRequestDispatcher("search.jsp").forward(request, response);
+            //検索キーワードqueryを取得しsessionに登録
+            session.setAttribute("keyword", request.getParameter("query"));
+            //検索キーワードが入力されていた場合、LogicBeansクラスメソッドsearchItemに検索キーワードqueryを引き渡し、商品情報を取得する
+            if (!request.getParameter("query").equals("")) {
+                LogicBeans.getInstance().searchItem(request);
+                request.getRequestDispatcher("search.jsp").forward(request, response);
+            } else {
+                //検索キーワードが入力されていなかった場合、requestScopeに検索キーワードの状況を登録し検索ページへ戻す
+                request.setAttribute("error", "キーワードが未入力です");
+                request.getRequestDispatcher("top.jsp").forward(request, response);
+            }
 
         } catch (Exception e) {
             System.out.println(e);

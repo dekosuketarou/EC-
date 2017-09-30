@@ -20,18 +20,20 @@
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/web/index.html</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/src/java/ECsiteLogic/DBManager.java</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/src/java/Mapper/Cart.java</file>
+            <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/web/mydelete_result.jsp</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/src/java/Data/UserDataDTO.java</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/src/java/Mapper/RegistrationConfirm.java</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/web/cart.jsp</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/web/mydata.jsp</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/src/java/Mapper/Search.java</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/src/java/Mapper/Remove.java</file>
+            <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/web/mydelete.jsp</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/src/java/Mapper/RegistrationComplete.java</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/web/buy_confirm.jsp</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/web/registration.jsp</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/src/java/Mapper/Login.java</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/src/java/ECsiteLogic/LogicBeans.java</file>
-            <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/src/java/Mapper/Top.java</file>
+            <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/src/java/Mapper/MyDeleteResult.java</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/src/java/Data/UserDataBeans.java</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/web/registration_complete.jsp</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/src/java/Data/ShopDataBeans.java</file>
@@ -40,9 +42,11 @@
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/src/java/Mapper/Item.java</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/web/buy_complete.jsp</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/src/java/Mapper/BuyConfirm.java</file>
+            <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/src/java/Mapper/MyHistory.java</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/web/add.jsp</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/web/myhistory.jsp</file>
             <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/web/registration_confirm.jsp</file>
+            <file>file:/D:/Users/DEKO/NetBeansProjects/ECsite/web/myupdate_result.jsp</file>
         </group>
     </open-files>
 </project-private>

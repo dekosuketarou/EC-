@@ -20,8 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author DEKO
+ * サーブレットやJavaBeansで使うロジックをここにまとめている getInstance()によりコードを簡略化
  */
 public class LogicBeans {
 
@@ -29,25 +28,38 @@ public class LogicBeans {
         return new LogicBeans();
     }
 
-    //request.getParameter("query")
+    /**
+     * YahooAPIのひとつであるshoppingWEB APIを使用して商品検索をするメソッド
+     * フォームデータやクエストリングを利用してAPIに必要な情報を取得する
+     *
+     * @query 検索キーワード //パーセントエンコードにより日本語入力に対応
+     * @offset 表示する商品の番号 for文の数字を増やすことによって取得することが出来る商品数を指定できる
+     */
     public void searchItem(HttpServletRequest request) throws IOException {
         HttpSession session = request.getSession();
         ArrayList<ShopDataBeans> searchResult = new ArrayList<>();
+        //検索キーワードや各種要素によって商品情報を取得することが出来るYahooAPI
         String shopAPI = "https://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch";
+        //YahooAPIから情報を取得するためのappID情報
         String appid = "?appid=dj00aiZpPVNLU1d6RGVMdjdyaiZzPWNvbnN1bWVyc2VjcmV0Jng9NDM-";
+        //検索キーワードをencodeメソッドにより日本語に対応
         String query = "&query=" + encode(request.getParameter("query"), "UTF-8");
+        //offsetにより取得順番を指定（初期値は0である）
         String offset = "&offset=" + request.getParameter("offset");
         URL url = new URL(shopAPI + appid + query + offset);
         HttpURLConnection urlCon = (HttpURLConnection) url.openConnection();
         urlCon.connect();
 
+        //jacksonAPIによりjsonpファイルを要素ごとに分化
         JsonFactory factory = new JsonFactory();
         JsonParser parser = factory.createParser(urlCon.getInputStream());
         ObjectMapper mapper = new ObjectMapper();
         JsonNode rootNode = mapper.readTree(parser);
         JsonNode result = rootNode.get("ResultSet").get("0").get("Result");
 
+        //
         for (int i = 0; i < 10; i++) {
+            //jacksonAPIの要素指定はString出しか出来ないのでindexを変換
             String index = String.valueOf(i);
             ShopDataBeans sdb = new ShopDataBeans();
             sdb.setItemCode(result.get(index).get("Code").textValue());
@@ -57,19 +69,33 @@ public class LogicBeans {
             sdb.setPrice(result.get(index).get("Price").get("_value").textValue());//codesearchでも利用
             searchResult.add(sdb);
         }
-
+        /**
+         * 必要な情報をsessionに登録する
+         *
+         * @totalResultAvailableは検索にhitした商品の数　わかりやすくセッション登録名はhit
+         * @searchResult 取得した商品情報の配列　ShopDataBeansは商品情報格納のための変数を持つBeans
+         */
         session.setAttribute("hit", rootNode.get("ResultSet").get("totalResultsAvailable").textValue());
         session.setAttribute("searchResult", searchResult);
     }
 
+    /**
+     * @ShopDateBeansのフィールドitemCodeを引数に渡すことで商品情報を取得することが出来るメソッド
+     * @itemCodeはYahooAPIにより取得できる商品コードである 本メソッドでは単一の商品情報を取得する
+     */
     public ShopDataBeans oneSearch(String code) throws IOException {
+        //itemCodeにより商品情報を取得することが出来るYahooAPI
         String shopAPI = "https://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemLookup";
         String appid = "?appid=dj00aiZpPVNLU1d6RGVMdjdyaiZzPWNvbnN1bWVyc2VjcmV0Jng9NDM-";
+        //取得する情報量の大きさを決める
         String responsegroup = "&responsegroup=medium";
-        String imgSize="&image_size=300";//76/106/132/146/300/600 サイズ指定
+        //取得する画像データの大きさを決める
+        //指定サイズはそれぞれ　76/106/132/146/300/600
+        String imgSize = "&image_size=300";
+        //引数として受け取った商品コード
         String itemcode = "&itemcode=" + code;
 
-        URL url = new URL(shopAPI + appid + itemcode + responsegroup+imgSize);
+        URL url = new URL(shopAPI + appid + itemcode + responsegroup + imgSize);
         HttpURLConnection urlCon = (HttpURLConnection) url.openConnection();
         urlCon.connect();
 
@@ -77,9 +103,9 @@ public class LogicBeans {
         JsonParser parser = factory.createParser(urlCon.getInputStream());
         ObjectMapper mapper = new ObjectMapper();
         JsonNode rootNode = mapper.readTree(parser);
-        
+
         ShopDataBeans sdb = new ShopDataBeans();
-        
+
         JsonNode result = rootNode.get("ResultSet").get("0").get("Result").get("0");
         sdb.setItemCode(result.get("Code").textValue());
         sdb.setItem(result.get("Name").textValue());
@@ -91,11 +117,11 @@ public class LogicBeans {
 
         return sdb;
     }
-    
-    public ArrayList<ShopDataBeans> cartSearch(CartItem cartItem) throws IOException{
-        ArrayList<ShopDataBeans> sdbAL=new ArrayList<>();
-        
-        for(String code:cartItem.getCartItem()){
+
+    //itemCodeの数だけ商品情報を取得するメソッド
+    public ArrayList<ShopDataBeans> cartSearch(CartItem cartItem) throws IOException {
+        ArrayList<ShopDataBeans> sdbAL = new ArrayList<>();
+        for (String code : cartItem.getCartItem()) {
             sdbAL.add(oneSearch(code));
         }
         return sdbAL;

@@ -26,9 +26,10 @@
     </c:choose>
         <hr>
         <form action="Search">
-            <input type="text" name="query">
+            <input type="text" name="query" size="25" placeholder="<c:choose><c:when test="${empty requestScope.error}">キーワードを入力してください</c:when><c:otherwise>${requestScope.error}</c:otherwise></c:choose>">
             <input type="hidden" value="0" name="offset">
             <input type="submit" value="検索">
         </form>
+            
     </body>
 </html>

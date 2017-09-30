@@ -30,7 +30,7 @@
             </c:otherwise>
         </c:choose>
         <hr>
-        <table width="800px">
+        <table>
             <tr><td rowspan="3"><img src="${sessionScope.oneSearch.getImageURL()}" width="150"></td><td>${sessionScope.oneSearch.getItem()}</td></tr>
             <tr><td>価格：${sessionScope.oneSearch.getPrice()}円</td></tr>
             <tr><td>${sessionScope.oneSearch.getReviewCount()}人のレビュー平均値は${sessionScope.oneSearch.getReviewRate()}です</td></tr>

@@ -35,9 +35,11 @@ public class Item extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             request.setCharacterEncoding("UTF-8");
+            
             HttpSession session = request.getSession();
-             ShopDataBeans sdb=LogicBeans.getInstance().oneSearch(request.getParameter("code"));
-             
+            //search.jspで選択した商品をクエストリングを利用してitemCodeを取得、その後LogicBeansクラスメソッドoneSearchにて商品情報を取得
+            ShopDataBeans sdb=LogicBeans.getInstance().oneSearch(request.getParameter("code"));
+            //単一の商品情報oneSearchを登録
             session.setAttribute("oneSearch",sdb);
             request.getRequestDispatcher("item.jsp").forward(request, response);
         } catch (Exception e) {

@@ -33,23 +33,24 @@ public class RegistrationConfirm extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session=request.getSession();
+            HttpSession session = request.getSession();
             request.setCharacterEncoding("UTF-8");
+
             UserDataBeans udb = new UserDataBeans();
-            
+            //フォーム情報を取得し、UserDataBeansに格納する
             udb.setName(request.getParameter("name"));
-            if(request.getParameter("password")!=null){
-                udb.setPassword(request.getParameter("password"));
-            }
+            udb.setPassword(request.getParameter("password"));
             udb.setMail(request.getParameter("mail"));
             udb.setAddress(request.getParameter("address"));
-            
-            session.setAttribute("registration",udb);
-            if(!udb.getName().equals("")&&!udb.getPassword().equals("")&&!udb.getMail().equals("")&&!udb.getAddress().equals("")){
-            request.getRequestDispatcher("registration_confirm.jsp").forward(request, response);
-            }else{
-            request.getRequestDispatcher("registration.jsp").forward(request, response);
-                
+            //格納した情報をsessionに登録
+            session.setAttribute("registration", udb);
+            //格納した情報がすべて入力された情報であれば登録確認ページregistration_congirm.jspへ
+            //空情報がひとつでもあればregistration.jspへ戻される
+            if (!udb.getName().equals("") && !udb.getPassword().equals("") && !udb.getMail().equals("") && !udb.getAddress().equals("")) {
+                request.getRequestDispatcher("registration_confirm.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher("registration.jsp").forward(request, response);
+
             }
         }
     }

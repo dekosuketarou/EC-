@@ -37,7 +37,9 @@ public class Cart extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session=request.getSession();
+            
             ArrayList<ShopDataBeans> sdbAL =new ArrayList<>();
+            //カゴの中に入っている商品情報表示のためにitemCodeから商品情報を取得し、その後情報をsessionに登録する
             if(session.getAttribute("cartItem")!=null){
                 sdbAL=LogicBeans.getInstance().cartSearch((CartItem)session.getAttribute("cartItem"));
             }

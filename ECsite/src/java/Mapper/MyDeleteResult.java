@@ -35,8 +35,9 @@ public class MyDeleteResult extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session=request.getSession();
-            
+            //ユーザー情報を引き渡し、ユーザーの退会処理を行う
             DAO.getInstance().UDDelete((UserDataDTO)session.getAttribute("login"));
+            //その後session情報を破棄する
             session.invalidate();
             request.getRequestDispatcher("mydelete_result.jsp").forward(request, response);
         }

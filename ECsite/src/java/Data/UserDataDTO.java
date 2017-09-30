@@ -9,8 +9,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 /**
- *
- * @author guest1Day
+ * データベースに対応したユーザー情報を格納するBeans
  */
 public class UserDataDTO {
         private int userID;

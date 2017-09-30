@@ -34,21 +34,29 @@ public class LoginResult extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession(true);
         try (PrintWriter out = response.getWriter()) {
+            HttpSession session = request.getSession(true);
             request.setCharacterEncoding("UTF-8");
+            //フォームよりパラメーターname,passwordを取得し、データベースにアクセスして該当するユーザー情報があるか検索
             UserDataDTO udd = DAO.getInstance().login(request.getParameter("name"), request.getParameter("password"));
-            if (udd.getDeleteFlg() == 1|| udd.getDeleteFlg()==-1) {
-                request.setAttribute("Flg",udd.getDeleteFlg());
+            //検索したユーザー情報のDeleteFlgが 1（退会済みユーザー） の場合、またはユーザーが該当しなかった場合（初期値 -1 ）
+            if (udd.getDeleteFlg() == 1 || udd.getDeleteFlg() == -1) {
+                //requestScopeにDeleteFlgを登録し、その後のメッセージに繁栄させる
+                request.setAttribute("Flg", udd.getDeleteFlg());
+                //再度login.jspへ
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             } else if (udd.getDeleteFlg() == 0) {
-                if(request.getParameter("cookie")!=null){
-                Cookie c1 = new Cookie("name", udd.getName());
-                Cookie c2 = new Cookie("password", udd.getPassword());
-                response.addCookie(c1);
-                response.addCookie(c2);
+                //cookie情報を登録するかチェックボックスへチェックを入れている場合
+                if (request.getParameter("cookie") != null) {
+                    //それぞれの情報を登録する
+                    Cookie c1 = new Cookie("name", udd.getName());
+                    Cookie c2 = new Cookie("password", udd.getPassword());
+                    response.addCookie(c1);
+                    response.addCookie(c2);
                 }
+                //loginメソッドにより取得したユーザー情報をsessionに登録
                 session.setAttribute("login", udd);
+                //Loginサーブレットにアクセスしたときに登録したsession情報returnがある場合、引数としてパスを指定する
                 if (session.getAttribute("return") != null) {
                     request.getRequestDispatcher(session.getAttribute("return").toString()).forward(request, response);
                 } else {

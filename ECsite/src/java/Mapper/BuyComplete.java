@@ -39,12 +39,28 @@ public class BuyComplete extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             HttpSession session=request.getSession();
             request.setCharacterEncoding("UTF-8");
-            int i=Integer.parseInt(request.getParameter("type"));
+            
             try {
+                /**
+                 * DAOクラスメソッドbuyDataを使用し、購入した商品をデータベースに登録する
+                 * session.getAttribute("login")によってユーザーの情報を取得
+                 * Cart.jspでの商品情報表示のために変換したShopDataBeans配列をsessionから取得
+                 * form情報からパラメータtypeを取得
+                 * 上記を引数としてメソッドに渡す
+                 */
                 DAO.getInstance().buyData((UserDataDTO)session.getAttribute("login"),(ArrayList<ShopDataBeans>)session.getAttribute("sdbAL"),Integer.parseInt(request.getParameter("type")));
+                /**
+                 * 商品情報登録後、ユーザーの購入金額を更新する
+                 */
                 DAO.getInstance().setDBTotal((UserDataDTO)session.getAttribute("login"));
+                /**
+                 * ユーザー情報更新後、sessionに登録されたユーザー情報を更新するためデータベースにアクセスし、情報を上書きする
+                 */
                 UserDataDTO udd= DAO.getInstance().UDSelect((UserDataDTO)session.getAttribute("login"));
                 session.setAttribute("login",udd);
+                //購入した商品情報をsessionから除外する
+                session.removeAttribute("sdbAL");
+                session.removeAttribute("cartItem");
             } catch(SQLException e){
                 System.out.println("DB接続に異常があります");
             }
