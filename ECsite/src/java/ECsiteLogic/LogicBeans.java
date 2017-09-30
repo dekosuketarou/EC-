@@ -5,6 +5,7 @@
  */
 package ECsiteLogic;
 
+import Data.CartItem;
 import Data.ShopDataBeans;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
@@ -31,7 +32,7 @@ public class LogicBeans {
     //request.getParameter("query")
     public void searchItem(HttpServletRequest request) throws IOException {
         HttpSession session = request.getSession();
-        ArrayList<ShopDataBeans> AL = new ArrayList<>();
+        ArrayList<ShopDataBeans> searchResult = new ArrayList<>();
         String shopAPI = "https://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch";
         String appid = "?appid=dj00aiZpPVNLU1d6RGVMdjdyaiZzPWNvbnN1bWVyc2VjcmV0Jng9NDM-";
         String query = "&query=" + encode(request.getParameter("query"), "UTF-8");
@@ -54,11 +55,11 @@ public class LogicBeans {
             sdb.setDesc(result.get(index).get("Description").textValue());
             sdb.setImageURL(result.get(index).get("Image").get("Small").textValue());//codesearchでも利用
             sdb.setPrice(result.get(index).get("Price").get("_value").textValue());//codesearchでも利用
-            AL.add(sdb);
+            searchResult.add(sdb);
         }
 
         session.setAttribute("hit", rootNode.get("ResultSet").get("totalResultsAvailable").textValue());
-        session.setAttribute("searchResult", AL);
+        session.setAttribute("searchResult", searchResult);
     }
 
     public ShopDataBeans oneSearch(String code) throws IOException {
@@ -89,5 +90,14 @@ public class LogicBeans {
         sdb.setReviewCount(result.get("Review").get("Count").textValue());
 
         return sdb;
+    }
+    
+    public ArrayList<ShopDataBeans> cartSearch(CartItem cartItem) throws IOException{
+        ArrayList<ShopDataBeans> sdbAL=new ArrayList<>();
+        
+        for(String code:cartItem.getCartItem()){
+            sdbAL.add(oneSearch(code));
+        }
+        return sdbAL;
     }
 }

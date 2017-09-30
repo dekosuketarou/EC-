@@ -6,6 +6,7 @@
 package Data;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -18,8 +19,8 @@ public class UserDataDTO {
         private String mail;
         private String address;
         private int total=0;
-        private Timestamp newDate;
-        private int deleteFlg=1;
+        private String newDate;
+        private int deleteFlg=-1;
 
         public void setUserID(int userID){
             this.userID=userID;
@@ -40,7 +41,8 @@ public class UserDataDTO {
             this.total=total;
         }
         public void setNewDate(Timestamp newDate){
-            this.newDate=newDate;
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            this.newDate=sdf.format(newDate);
         }
         public void setDeleteFlg(int deleteFlg){
             this.deleteFlg=deleteFlg;
@@ -64,7 +66,7 @@ public class UserDataDTO {
         public int getTotal(){
             return total;
         }
-        public Timestamp getNewDate(){
+        public String getNewDate(){
             return newDate;
         }
         public int getDeleteFlg(){

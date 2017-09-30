@@ -4,6 +4,7 @@
     Author     : DEKO
 --%>
 
+<%@page import="ECsiteLogic.MenuHelper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
-        <h1>Hello World!</h1>
+    <body>            
+        <%=MenuHelper.getInstance().getLogoutMenu()%>
+        <%=MenuHelper.getInstance().getMyDataMenu()%>
+        <%=MenuHelper.getInstance().getCartMenu()%>
+        <%=MenuHelper.getInstance().getTopMenu()%>
+        <hr>
+        <h3>商品をカートに追加しました</h3>
     </body>
 </html>

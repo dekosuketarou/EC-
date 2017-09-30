@@ -18,7 +18,6 @@ public class ShopDataBeans {
     private String imageURL;
     private double  reviewRate;
     private int reviewCount;
-    static String hit;
  
     
 
@@ -36,6 +35,13 @@ public class ShopDataBeans {
 	} catch (NumberFormatException e) {
             System.out.print(e);
 	}
+    }
+    public void setType(String type){
+        if(type!=null){
+            this.type=Integer.parseInt(type);
+        }else if(type==null){
+            this.type=1;
+        }
     }
     public void setItemCode(String itemCode){
         this.itemCode=itemCode;
@@ -66,6 +72,9 @@ public class ShopDataBeans {
     }
     public int getPrice(){
         return price;
+    }
+    public int getType(){
+        return type;
     }
     public String getItemCode(){
         return itemCode;

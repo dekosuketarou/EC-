@@ -4,6 +4,7 @@
     Author     : DEKO
 --%>
 
+<%@page import="ECsiteLogic.MenuHelper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,9 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%=MenuHelper.getInstance().getLoginMenu()%>
+        <%=MenuHelper.getInstance().getTopMenu()%>
+        <hr>
         <table>
             <tr><th>名前</th><td>${sessionScope.registration.name}</td></tr>
             <tr><th>パスワード</th><td>${sessionScope.registration.password}</td></tr>
@@ -21,7 +25,8 @@
             <tr><td>
                     <form action="RegistrationComplete">
                         <input type="submit" value="登録する">
-                    </form></td><td>
+                    </form></td>
+                <td>
                     <form action="registration.jsp">
                         <input type="submit" value="登録画面に戻る">
                     </form></td></tr></table>

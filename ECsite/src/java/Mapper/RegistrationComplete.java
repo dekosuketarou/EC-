@@ -39,7 +39,7 @@ public class RegistrationComplete extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session=request.getSession();
-            UserDataBeans udb=(UserDataBeans)session.getAttribute("udb");
+            UserDataBeans udb=(UserDataBeans)session.getAttribute("registration");
             UserDataDTO udd=new UserDataDTO();
             udb.DTOMapping(udd);
             DAO.getInstance().UDInsert(udd);

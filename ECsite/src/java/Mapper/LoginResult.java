@@ -38,7 +38,8 @@ public class LoginResult extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             request.setCharacterEncoding("UTF-8");
             UserDataDTO udd = DAO.getInstance().login(request.getParameter("name"), request.getParameter("password"));
-            if (udd.getDeleteFlg() == 1) {
+            if (udd.getDeleteFlg() == 1|| udd.getDeleteFlg()==-1) {
+                request.setAttribute("Flg",udd.getDeleteFlg());
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             } else if (udd.getDeleteFlg() == 0) {
                 if(request.getParameter("cookie")!=null){
@@ -49,7 +50,7 @@ public class LoginResult extends HttpServlet {
                 }
                 session.setAttribute("login", udd);
                 if (session.getAttribute("return") != null) {
-                    response.sendRedirect(session.getAttribute("return").toString());
+                    request.getRequestDispatcher(session.getAttribute("return").toString()).forward(request, response);
                 } else {
                     request.getRequestDispatcher("top.jsp").forward(request, response);
                 }

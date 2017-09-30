@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author guest1Day
  */
 public class DBManager {
-    static String dburl="jdbc:mysql://localhost:3306/ECsite";
+    static String dburl="jdbc:mysql://localhost:3306/kagoyume_db";
     static String jdbc="com.mysql.jdbc.Driver";
     static String dbuser="root";
     static String dbpassword="";

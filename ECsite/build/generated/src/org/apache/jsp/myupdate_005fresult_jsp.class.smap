@@ -1,0 +1,14 @@
+SMAP
+myupdate_005fresult_jsp.java
+JSP
+*S JSP
+*F
++ 0 myupdate_result.jsp
+myupdate_result.jsp
+*L
+5,11:45
+16,4:56,3
+20,2:68
+22,4:70,3
+26,4:82
+*E

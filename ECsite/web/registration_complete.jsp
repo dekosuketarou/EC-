@@ -4,6 +4,7 @@
     Author     : DEKO
 --%>
 
+<%@page import="ECsiteLogic.MenuHelper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,9 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%=MenuHelper.getInstance().getLoginMenu()%>
+        <%=MenuHelper.getInstance().getTopMenu()%>
+        <hr>
         <div>
             <table>
             <tr><th>名前</th><td>${requestScope.registration.name}</td></tr>

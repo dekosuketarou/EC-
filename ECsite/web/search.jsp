@@ -15,7 +15,7 @@
 
         <%
 
-            ArrayList<ShopDataBeans> AL = (ArrayList<ShopDataBeans>) session.getAttribute("searchResult");
+            ArrayList<ShopDataBeans> searchResult = (ArrayList<ShopDataBeans>) session.getAttribute("searchResult");
 
         %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -26,7 +26,9 @@
             <c:when test="${sessionScope.searchResult!=null}">
                 <c:choose>
                     <c:when test="${sessionScope.login!=null}">
-                        <%=MenuHelper.getInstance().getUpMenu()%>
+                        <%=MenuHelper.getInstance().getLogoutMenu()%>
+                        <%=MenuHelper.getInstance().getMyDataMenu()%>
+                        <%=MenuHelper.getInstance().getCartMenu()%>
                     </c:when>
                     <c:otherwise> 
                         <form action="Login" method="POST">
@@ -38,7 +40,7 @@
                 <hr>
                 <h3>検索キーワード「${sessionScope.keyword}」で検索した結果</h3>
                 <h3>商品が${hit}件見つかりました</h3>
-                <%for (ShopDataBeans sdb : AL) {%>
+                <%for (ShopDataBeans sdb : searchResult) {%>
                 <table>
                     <tr><td rowspan="2"><img src="<%=sdb.getImageURL()%>" ></td><td><a href="Item?code=<%=sdb.getItemCode()%>"><%=sdb.getItem()%></a></td></tr>
                     <tr><td><%=sdb.getPrice()%>円(税込み)</td></tr>

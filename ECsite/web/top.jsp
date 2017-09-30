@@ -16,13 +16,12 @@
     <body>
      <c:choose>
         <c:when test="${sessionScope.login!=null}">
-                <%=MenuHelper.getInstance().getUpMenu()%>
+                <%=MenuHelper.getInstance().getLogoutMenu()%>
+                <%=MenuHelper.getInstance().getMyDataMenu()%>
+                <%=MenuHelper.getInstance().getCartMenu()%>
         </c:when>
         <c:otherwise> 
-            <form action="Login" method="POST">
-                <input type="hidden" value="top.jsp" name="return">
-                <input type="submit" value="ログインページへ">
-            </form>
+        <%=MenuHelper.getInstance().getLoginMenu()%>
         </c:otherwise>
     </c:choose>
         <hr>

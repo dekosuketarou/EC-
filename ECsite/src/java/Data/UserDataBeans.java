@@ -14,7 +14,7 @@ public class UserDataBeans {
     private String password="";
     private String mail="";
     private String address="";
-
+ 
     
     
     public void setName(String name){
@@ -29,6 +29,7 @@ public class UserDataBeans {
     public void setAddress(String address){
         this.address=address;
     }
+
     
     
     public String getName(){
@@ -43,6 +44,8 @@ public class UserDataBeans {
     public String getAddress(){
         return address;
     }
+
+        
     public void DTOMapping(UserDataDTO udd){
         udd.setName(this.name);
         udd.setPassword(this.password);
@@ -50,4 +53,5 @@ public class UserDataBeans {
         udd.setAddress(this.address);
         
     }
+
 }
