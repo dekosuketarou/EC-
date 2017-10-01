@@ -3,7 +3,6 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import ECsiteLogic.MenuHelper;
 
 public final class myhistory_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -68,31 +67,40 @@ public final class myhistory_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+      out.write("        <meta charset=\"utf-8\">\n");
+      out.write("        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n");
+      out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n");
       out.write("        <title>JSP Page</title>\n");
+      out.write("        <link href=\"bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\">\n");
+      out.write("        <link href=\"bootstrap/css/stylesheet.css\" rel=\"stylesheet\">\n");
+      out.write("        <!--[if lt IE 9]>\n");
+      out.write("                <script src=\"https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js\"></script>\n");
+      out.write("                <script src=\"https://oss.maxcdn.com/respond/1.4.2/respond.min.js\"></script>\n");
+      out.write("        <![endif]-->\n");
       out.write("    </head>\n");
-      out.write("    <body>\n");
-      out.write("        ");
-      out.print(MenuHelper.getInstance().getLogoutMenu());
-      out.write("\n");
-      out.write("        ");
-      out.print(MenuHelper.getInstance().getMyDataMenu());
-      out.write("\n");
-      out.write("        ");
-      out.print(MenuHelper.getInstance().getCartMenu());
-      out.write("\n");
-      out.write("        ");
-      out.print(MenuHelper.getInstance().getTopMenu());
-      out.write("\n");
-      out.write("        <hr>\n");
-      out.write("        ");
+      out.write("    <body>    \n");
+      out.write("        <div class=\"base\">\n");
+      out.write("            <div class=\"container-fluid text-center\"><a href=\"top.jsp\"><img src=\"かごゆめ.png\"></a></div>\n");
+      out.write("            <hr>\n");
+      out.write("            <div class=\"container text-center\">\n");
+      out.write("                <div class=\"col-xs-4 center-block\"><a href=\"Logout\">ログアウト</a></div>\n");
+      out.write("                <div class=\"col-xs-4 center-block\"><a href=\"MyData\">会員情報</a></div>\n");
+      out.write("                <div class=\"col-xs-4 center-block\"><a href=\"Cart\">買い物カゴ</a></div>\n");
+      out.write("            </div>\n");
+      out.write("            <hr>\n");
+      out.write("            <div class=\"container-fluid\">\n");
+      out.write("                <div class=\"col-xs-8 col-xs-offset-2\">\n");
+      out.write("                    ");
       if (_jspx_meth_c_choose_0(_jspx_page_context))
         return;
       out.write("\n");
+      out.write("                </div>\n");
+      out.write("            </div>\n");
+      out.write("            <hr>\n");
+      out.write("        </div>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
@@ -120,15 +128,15 @@ public final class myhistory_jsp extends org.apache.jasper.runtime.HttpJspBase
     if (_jspx_eval_c_choose_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\n");
-        out.write("            ");
+        out.write("                        ");
         if (_jspx_meth_c_when_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_0, _jspx_page_context))
           return true;
         out.write("\n");
-        out.write("        ");
+        out.write("                        ");
         if (_jspx_meth_c_otherwise_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_0, _jspx_page_context))
           return true;
         out.write("\n");
-        out.write("        ");
+        out.write("                    ");
         int evalDoAfterBody = _jspx_th_c_choose_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -155,18 +163,19 @@ public final class myhistory_jsp extends org.apache.jasper.runtime.HttpJspBase
     if (_jspx_eval_c_when_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\n");
-        out.write("                \n");
-        out.write("        <table>\n");
-        out.write("            <tr><td>商品名</td><td>金額</td></tr>\n");
-        out.write("            ");
+        out.write("                            <div style=\"width:400px;margin: auto;font-size: 12px;\">\n");
+        out.write("                                <table class=\"container-fluid table\">\n");
+        out.write("                                    <tr><td></td><td class=\"text-center\" style=\"font-size: 20px\">商品名</td><td style=\"font-size: 20px;width: 70px\">金額</td></tr>\n");
+        out.write("                                    ");
         if (_jspx_meth_c_forEach_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_when_0, _jspx_page_context))
           return true;
         out.write("\n");
-        out.write("            <tr><th colspan=\"3\">合計金額：");
+        out.write("                                    <tr><th colspan=\"3\" class=\"text-center\"><h3>合計金額：");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${total}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("円</th></tr>\n");
-        out.write("        </table>\n");
-        out.write("            ");
+        out.write("円</h3></th></tr>\n");
+        out.write("                                </table>\n");
+        out.write("                            </div>\n");
+        out.write("                        ");
         int evalDoAfterBody = _jspx_th_c_when_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -196,13 +205,13 @@ public final class myhistory_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\n");
-          out.write("                ");
+          out.write("                                        ");
           if (_jspx_meth_c_set_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
             return true;
           out.write("\n");
-          out.write("                <tr><td><img src=\"");
+          out.write("                                        <tr><td><img src=\"");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${myhistory.imageURL}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("\" width=\"50\"></td><td><a href=\"Item?code=");
+          out.write("\" width=\"70\"></td><td><a href=\"Item?code=");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${myhistory.itemCode}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write('"');
           out.write('>');
@@ -210,7 +219,7 @@ public final class myhistory_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write("</a></td><td>");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${myhistory.price}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("円</td></tr>\n");
-          out.write("            ");
+          out.write("                                            ");
           int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
@@ -277,8 +286,8 @@ public final class myhistory_jsp extends org.apache.jasper.runtime.HttpJspBase
     if (_jspx_eval_c_otherwise_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\n");
-        out.write("            <h1>買った夢がありません</h1>\n");
-        out.write("        ");
+        out.write("                            <h1 class=\"text-center\">買った夢がありません</h1>\n");
+        out.write("                        ");
         int evalDoAfterBody = _jspx_th_c_otherwise_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;

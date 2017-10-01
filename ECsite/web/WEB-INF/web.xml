@@ -13,10 +13,6 @@
         <servlet-class>Mapper.RegistrationConfirm</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>FormReset</servlet-name>
-        <servlet-class>Mapper.FormReset</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>RegistrationComplete</servlet-name>
         <servlet-class>Mapper.RegistrationComplete</servlet-class>
     </servlet>
@@ -53,8 +49,8 @@
         <servlet-class>Mapper.BuyComplete</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>MyDate</servlet-name>
-        <servlet-class>Mapper.MyDate</servlet-class>
+        <servlet-name>MyData</servlet-name>
+        <servlet-class>Mapper.MyData</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MyUpdateResult</servlet-name>
@@ -79,10 +75,6 @@
     <servlet-mapping>
         <servlet-name>RegistrationConfirm</servlet-name>
         <url-pattern>/RegistrationConfirm</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>FormReset</servlet-name>
-        <url-pattern>/FormReset</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegistrationComplete</servlet-name>
@@ -121,8 +113,8 @@
         <url-pattern>/BuyComplete</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>MyDate</servlet-name>
-        <url-pattern>/MyDate</url-pattern>
+        <servlet-name>MyData</servlet-name>
+        <url-pattern>/MyData</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MyUpdateResult</servlet-name>

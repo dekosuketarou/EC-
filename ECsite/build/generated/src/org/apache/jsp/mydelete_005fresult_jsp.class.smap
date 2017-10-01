@@ -1,0 +1,10 @@
+SMAP
+mydelete_005fresult_jsp.java
+JSP
+*S JSP
+*F
++ 0 mydelete_result.jsp
+mydelete_result.jsp
+*L
+5,33:44
+*E

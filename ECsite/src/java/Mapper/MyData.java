@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author DEKO
  */
-public class MyDate extends HttpServlet {
+public class MyData extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,7 +31,7 @@ public class MyDate extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            request.getRequestDispatcher("mydate.jsp").forward(request, response);
+            request.getRequestDispatcher("mydata.jsp").forward(request, response);
         }
     }
 

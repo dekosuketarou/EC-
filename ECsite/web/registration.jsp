@@ -5,47 +5,46 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="ECsiteLogic.MenuHelper"%>
 <%@page import="Data.UserDataBeans"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>JSP Page</title>
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+                <link href="bootstrap/css/stylesheet.css" rel="stylesheet">
+        <!--[if lt IE 9]>
+                <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+                <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
     </head>
     <body>
-        <c:choose>
-            <c:when test="${sessionScope.login!=null}">
-                <%=MenuHelper.getInstance().getLogoutMenu()%>
-                <%=MenuHelper.getInstance().getCartMenu()%>
-            </c:when>
-            <c:otherwise> 
-                <form action="Login" method="POST">
-                    <input type="hidden" value="registration.jsp" name="return">
-                    <input type="submit" value="ログインページへ">
-                </form>
-            </c:otherwise>
-        </c:choose>
+        <div class="base">
+        <div class="container-fluid text-center"><a href="top.jsp"><img src="かごゆめ.png"></a></div>
         <hr>
-        <form action="RegistrationConfirm" method="post">
-            <table width="80%" >
-                <tr><th>名前</th><td><input type="text" name="name" value="<c:if test="${sessionScope.registration!=null}">${sessionScope.registration.name}</c:if>"><c:if test="${empty sessionScope.registration.name && !empty sessionScope.registration}">未記入です</c:if>
-                        </td></tr>
-                        <tr><th>パスワード</th><td><input type="text" name="password" value="<c:if test="${sessionScope.registration!=null}">${sessionScope.registration.password}</c:if>"><c:if test="${empty sessionScope.registration.password && !empty sessionScope.registration}">未記入です</c:if></td></tr>
-                <tr><th>メールアドレス</th><td><input type="email" name="mail" value="<c:if test="${sessionScope.registration!=null}">${sessionScope.registration.mail}</c:if>"><c:if test="${empty sessionScope.registration.mail && !empty sessionScope.registration}">未記入です</c:if></td></tr>
-                <tr><th>住所</th><td><input type="text" name="address" value="<c:if test="${sessionScope.registration!=null}">${sessionScope.registration.address}</c:if>"><c:if test="${empty sessionScope.registration.address && !empty sessionScope.registration}">未記入です</c:if></td></tr>
-                <tr><th colspan="2"><input type="submit" value="登録確認">
-                    </th>
-            </table>
-        </form>
-        <form action="FormReset">
-            <table width="80%" >
-                <tr><td><input type="submit" value="リセット">
-                    </td></tr>
-            </table>
-        </form>  
+
+        <div class="container-fluid text-center"><a href="Login">ログインページへ</a></div>
+
+        <hr>
+
+        <div class="container-fluid">
+            <div class="col-xs-6 col-xs-offset-3">
+                <form action="RegistrationConfirm" method="post">
+                    <div  style="width: 350px;margin: auto;">
+                    <table class="container-fluid table">
+                        <tr><th class="text-right">名前</th><td><input type="text" name="name" class="form-control" placeholder="<c:if test="${empty sessionScope.registration.name && !empty sessionScope.registration}">未記入です</c:if>" value="<c:if test="${sessionScope.registration!=null}">${sessionScope.registration.name}</c:if>"></td></tr>
+                        <tr><th class="text-right">パスワード</th><td><input type="text" name="password" class="form-control"  placeholder="<c:if test="${empty sessionScope.registration.password && !empty sessionScope.registration}">未記入です</c:if>"value="<c:if test="${sessionScope.registration!=null}">${sessionScope.registration.password}</c:if>"></td></tr>
+                        <tr><th class="text-right">メールアドレス</th><td><input type="email" name="mail" class="form-control" placeholder="<c:if test="${empty sessionScope.registration.mail && !empty sessionScope.registration}">未記入です</c:if>" value="<c:if test="${sessionScope.registration!=null}">${sessionScope.registration.mail}</c:if>"></td></tr>
+                        <tr><th class="text-right">住所</th><td><input type="text" name="address" class="form-control" placeholder="<c:if test="${empty sessionScope.registration.address && !empty sessionScope.registration}">未記入です</c:if>" value="<c:if test="${sessionScope.registration!=null}">${sessionScope.registration.address}</c:if>"></td></tr>
+                    </table>
+                        <div class="container-fluid"><input type="submit" value="登録確認ページへ" class="form-control"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
     </body>
 </html>
