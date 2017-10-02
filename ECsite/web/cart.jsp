@@ -48,18 +48,16 @@
                                             <tr><td>${sdb.price}円(税込み)</td></tr>
                                             <c:set var="total">${total+sdb.price}</c:set>
                                         </c:forEach>
-                                        <tr><th colspan="2">合計金額は${total}円です</th></tr>
-                                        <tr><td colspan="2">
-                                                <form action="BuyConfirm" method="post">
-                                                    <input type="hidden" name="price" value="total">
-                                                    <input type="submit" value="購入する">
-                                                </form>
+                                            <tr><th colspan="3" class="text-center">合計金額は${total}円です</th></tr>
+                                        <tr><td colspan="3">
+                                                <div class="container-fluid text-center"><a href="BuyConfirm">購入する</a></div>
+                                        
                                             </td></tr>
                                     </table>
                                     </div>
                                 </c:when>
                                 <c:otherwise>
-                                    <h3>カゴの中に何もありません</h3>
+                                   <div class="container-fluid text-center"><h3>カゴの中に何もありません</h3></div> 
                                 </c:otherwise>
                             </c:choose>
                         </c:when>

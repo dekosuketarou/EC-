@@ -27,7 +27,7 @@
         <div class="container-fluid text-center"><a href="top.jsp"><img src="かごゆめ.png"></a></div>
         <hr>
         <c:choose>
-            <c:when test="${sessionScope.searchResult!=null}">
+            <c:when test="${sessionScope.hit!=null}">
                 <c:choose>
                     <c:when test="${sessionScope.login!=null}">
                         <div class="container-fluid text-center">
@@ -59,7 +59,8 @@
 
 
                         <h3 class="text-center">検索キーワード「${sessionScope.keyword}」で検索した結果</h3>
-                        <h3 class="text-center">商品が${sessionScope.hit}件見つかりました</h3>
+                        <h3 class="text-center">
+                            <c:choose><c:when test="${sessionScope.hit==0}">商品が見つかりませんでした</c:when><c:otherwise>商品が${sessionScope.hit}件見つかりました</c:otherwise></c:choose></h3>
 
                             <c:forEach items="${sessionScope.searchResult}" var="sdb">
                                 <table style="margin: 10px;"> 

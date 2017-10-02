@@ -57,26 +57,32 @@ public class LogicBeans {
         JsonNode rootNode = mapper.readTree(parser);
         JsonNode result = rootNode.get("ResultSet").get("0").get("Result");
 
-        //
-        for (int i = 0; i < 10; i++) {
-            //jacksonAPIの要素指定はString出しか出来ないのでindexを変換
-            String index = String.valueOf(i);
-            ShopDataBeans sdb = new ShopDataBeans();
-            sdb.setItemCode(result.get(index).get("Code").textValue());
-            sdb.setItem(result.get(index).get("Name").textValue());//codesearchでも利用
-            sdb.setDesc(result.get(index).get("Description").textValue());
-            sdb.setImageURL(result.get(index).get("Image").get("Small").textValue());//codesearchでも利用
-            sdb.setPrice(result.get(index).get("Price").get("_value").textValue());//codesearchでも利用
-            searchResult.add(sdb);
+        //該当商品があった場合は１０件商品情報を格納しsessionにsearchResultとして登録
+        //該当商品がなかった場合これまでのsearchResultを破棄する
+        if (!rootNode.get("ResultSet").get("totalResultsAvailable").textValue().equals("0")) {
+            for (int i = 0; i < 10; i++) {
+                //jacksonAPIの要素指定はString出しか出来ないのでindexを変換
+                String index = String.valueOf(i);
+                ShopDataBeans sdb = new ShopDataBeans();
+                sdb.setItemCode(result.get(index).get("Code").textValue());
+                sdb.setItem(result.get(index).get("Name").textValue());//codesearchでも利用
+                sdb.setDesc(result.get(index).get("Description").textValue());
+                sdb.setImageURL(result.get(index).get("Image").get("Small").textValue());//codesearchでも利用
+                sdb.setPrice(result.get(index).get("Price").get("_value").textValue());//codesearchでも利用
+                searchResult.add(sdb);
+            }
+            /**
+             * 必要な情報をsessionに登録する
+             *
+             * @totalResultAvailableは検索にhitした商品の数　わかりやすくセッション登録名はhit
+             * @searchResult 取得した商品情報の配列　ShopDataBeansは商品情報格納のための変数を持つBeans
+             */
+            session.setAttribute("hit", rootNode.get("ResultSet").get("totalResultsAvailable").textValue());
+            session.setAttribute("searchResult", searchResult);
+        }else{
+            session.setAttribute("hit","0");
+            session.removeAttribute("searchResult");
         }
-        /**
-         * 必要な情報をsessionに登録する
-         *
-         * @totalResultAvailableは検索にhitした商品の数　わかりやすくセッション登録名はhit
-         * @searchResult 取得した商品情報の配列　ShopDataBeansは商品情報格納のための変数を持つBeans
-         */
-        session.setAttribute("hit", rootNode.get("ResultSet").get("totalResultsAvailable").textValue());
-        session.setAttribute("searchResult", searchResult);
     }
 
     /**

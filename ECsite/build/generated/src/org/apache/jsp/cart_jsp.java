@@ -251,14 +251,12 @@ request.getRequestDispatcher("Login").forward(request, response);
         if (_jspx_meth_c_forEach_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_when_1, _jspx_page_context))
           return true;
         out.write("\r\n");
-        out.write("                                        <tr><th colspan=\"2\">合計金額は");
+        out.write("                                            <tr><th colspan=\"3\" class=\"text-center\">合計金額は");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${total}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("円です</th></tr>\r\n");
-        out.write("                                        <tr><td colspan=\"2\">\r\n");
-        out.write("                                                <form action=\"BuyConfirm\" method=\"post\">\r\n");
-        out.write("                                                    <input type=\"hidden\" name=\"price\" value=\"total\">\r\n");
-        out.write("                                                    <input type=\"submit\" value=\"購入する\">\r\n");
-        out.write("                                                </form>\r\n");
+        out.write("                                        <tr><td colspan=\"3\">\r\n");
+        out.write("                                                <div class=\"container-fluid text-center\"><a href=\"BuyConfirm\">購入する</a></div>\r\n");
+        out.write("                                        \r\n");
         out.write("                                            </td></tr>\r\n");
         out.write("                                    </table>\r\n");
         out.write("                                    </div>\r\n");
@@ -375,7 +373,7 @@ request.getRequestDispatcher("Login").forward(request, response);
     if (_jspx_eval_c_otherwise_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("                                    <h3>カゴの中に何もありません</h3>\r\n");
+        out.write("                                   <div class=\"container-fluid text-center\"><h3>カゴの中に何もありません</h3></div> \r\n");
         out.write("                                ");
         int evalDoAfterBody = _jspx_th_c_otherwise_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
