@@ -32,7 +32,6 @@
             <hr>
             <div class="container-fluid">
                 <div class="col-xs-6 col-xs-offset-3">
-                    <h1>購入が完了しました</h1>
                     <div class="container-fluid text-center"><h1>購入が完了しました</h1></div> 
                 </div>
             </div>        
