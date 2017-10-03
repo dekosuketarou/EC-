@@ -48,8 +48,9 @@
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                             <input type="text" name="query" class=" form-control" value="${sessionScope.keyword}" placeholder="<c:choose><c:when test="${empty requestScope.error}">キーワードを入力してください</c:when><c:otherwise>${requestScope.error}</c:otherwise></c:choose>">
                             <br>    <select name="offset">
+                                <option  value="0">----------------</option>
                                 <%for (int i = 0; i < Integer.parseInt((String) session.getAttribute("hit")) / 10; i++) {%>
-                                <%if (i == 50) {
+                                <%if (i == 30) {
                                         break;
                                     }%>
                                 <option  value="<%=i * 10%>"><%=i + 1%>ページ目</option>

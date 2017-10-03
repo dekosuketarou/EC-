@@ -100,7 +100,7 @@ public final class search_jsp extends org.apache.jasper.runtime.HttpJspBase
           org.apache.taglibs.standard.tag.rt.core.WhenTag _jspx_th_c_when_0 = (org.apache.taglibs.standard.tag.rt.core.WhenTag) _jspx_tagPool_c_when_test.get(org.apache.taglibs.standard.tag.rt.core.WhenTag.class);
           _jspx_th_c_when_0.setPageContext(_jspx_page_context);
           _jspx_th_c_when_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_choose_0);
-          _jspx_th_c_when_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.searchResult!=null}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+          _jspx_th_c_when_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.hit!=null}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
           int _jspx_eval_c_when_0 = _jspx_th_c_when_0.doStartTag();
           if (_jspx_eval_c_when_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
             do {
@@ -121,11 +121,12 @@ public final class search_jsp extends org.apache.jasper.runtime.HttpJspBase
                 return;
               out.write("\">\r\n");
               out.write("                            <br>    <select name=\"offset\">\r\n");
+              out.write("                                <option  value=\"0\">----------------</option>\r\n");
               out.write("                                ");
 for (int i = 0; i < Integer.parseInt((String) session.getAttribute("hit")) / 10; i++) {
               out.write("\r\n");
               out.write("                                ");
-if (i == 50) {
+if (i == 30) {
                                         break;
                                     }
               out.write("\r\n");
@@ -145,9 +146,11 @@ if (i == 50) {
               out.write("                        <h3 class=\"text-center\">検索キーワード「");
               out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.keyword}", java.lang.String.class, (PageContext)_jspx_page_context, null));
               out.write("」で検索した結果</h3>\r\n");
-              out.write("                        <h3 class=\"text-center\">商品が");
-              out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.hit}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-              out.write("件見つかりました</h3>\r\n");
+              out.write("                        <h3 class=\"text-center\">\r\n");
+              out.write("                            ");
+              if (_jspx_meth_c_choose_3((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_when_0, _jspx_page_context))
+                return;
+              out.write("</h3>\r\n");
               out.write("\r\n");
               out.write("                            ");
               if (_jspx_meth_c_forEach_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_when_0, _jspx_page_context))
@@ -167,23 +170,23 @@ if (i == 50) {
           out.write("\r\n");
           out.write("                        ");
           //  c:otherwise
-          org.apache.taglibs.standard.tag.common.core.OtherwiseTag _jspx_th_c_otherwise_2 = (org.apache.taglibs.standard.tag.common.core.OtherwiseTag) _jspx_tagPool_c_otherwise.get(org.apache.taglibs.standard.tag.common.core.OtherwiseTag.class);
-          _jspx_th_c_otherwise_2.setPageContext(_jspx_page_context);
-          _jspx_th_c_otherwise_2.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_choose_0);
-          int _jspx_eval_c_otherwise_2 = _jspx_th_c_otherwise_2.doStartTag();
-          if (_jspx_eval_c_otherwise_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+          org.apache.taglibs.standard.tag.common.core.OtherwiseTag _jspx_th_c_otherwise_3 = (org.apache.taglibs.standard.tag.common.core.OtherwiseTag) _jspx_tagPool_c_otherwise.get(org.apache.taglibs.standard.tag.common.core.OtherwiseTag.class);
+          _jspx_th_c_otherwise_3.setPageContext(_jspx_page_context);
+          _jspx_th_c_otherwise_3.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_choose_0);
+          int _jspx_eval_c_otherwise_3 = _jspx_th_c_otherwise_3.doStartTag();
+          if (_jspx_eval_c_otherwise_3 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
             do {
 request.getRequestDispatcher("top.jsp").forward(request, response);
-              int evalDoAfterBody = _jspx_th_c_otherwise_2.doAfterBody();
+              int evalDoAfterBody = _jspx_th_c_otherwise_3.doAfterBody();
               if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
                 break;
             } while (true);
           }
-          if (_jspx_th_c_otherwise_2.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-            _jspx_tagPool_c_otherwise.reuse(_jspx_th_c_otherwise_2);
+          if (_jspx_th_c_otherwise_3.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+            _jspx_tagPool_c_otherwise.reuse(_jspx_th_c_otherwise_3);
             return;
           }
-          _jspx_tagPool_c_otherwise.reuse(_jspx_th_c_otherwise_2);
+          _jspx_tagPool_c_otherwise.reuse(_jspx_th_c_otherwise_3);
           out.write("\r\n");
           out.write("                    ");
           int evalDoAfterBody = _jspx_th_c_choose_0.doAfterBody();
@@ -201,6 +204,7 @@ request.getRequestDispatcher("top.jsp").forward(request, response);
       out.write("            </div>\r\n");
       out.write("        </div>\r\n");
       out.write("        </div>\r\n");
+      out.write("        <hr>\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {
@@ -386,6 +390,87 @@ request.getRequestDispatcher("top.jsp").forward(request, response);
       return true;
     }
     _jspx_tagPool_c_otherwise.reuse(_jspx_th_c_otherwise_1);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_choose_3(javax.servlet.jsp.tagext.JspTag _jspx_th_c_when_0, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:choose
+    org.apache.taglibs.standard.tag.common.core.ChooseTag _jspx_th_c_choose_3 = (org.apache.taglibs.standard.tag.common.core.ChooseTag) _jspx_tagPool_c_choose.get(org.apache.taglibs.standard.tag.common.core.ChooseTag.class);
+    _jspx_th_c_choose_3.setPageContext(_jspx_page_context);
+    _jspx_th_c_choose_3.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_when_0);
+    int _jspx_eval_c_choose_3 = _jspx_th_c_choose_3.doStartTag();
+    if (_jspx_eval_c_choose_3 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        if (_jspx_meth_c_when_3((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_3, _jspx_page_context))
+          return true;
+        if (_jspx_meth_c_otherwise_2((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_3, _jspx_page_context))
+          return true;
+        int evalDoAfterBody = _jspx_th_c_choose_3.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_choose_3.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_choose.reuse(_jspx_th_c_choose_3);
+      return true;
+    }
+    _jspx_tagPool_c_choose.reuse(_jspx_th_c_choose_3);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_when_3(javax.servlet.jsp.tagext.JspTag _jspx_th_c_choose_3, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:when
+    org.apache.taglibs.standard.tag.rt.core.WhenTag _jspx_th_c_when_3 = (org.apache.taglibs.standard.tag.rt.core.WhenTag) _jspx_tagPool_c_when_test.get(org.apache.taglibs.standard.tag.rt.core.WhenTag.class);
+    _jspx_th_c_when_3.setPageContext(_jspx_page_context);
+    _jspx_th_c_when_3.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_choose_3);
+    _jspx_th_c_when_3.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.hit==0}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    int _jspx_eval_c_when_3 = _jspx_th_c_when_3.doStartTag();
+    if (_jspx_eval_c_when_3 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("商品が見つかりませんでした");
+        int evalDoAfterBody = _jspx_th_c_when_3.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_when_3.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_when_test.reuse(_jspx_th_c_when_3);
+      return true;
+    }
+    _jspx_tagPool_c_when_test.reuse(_jspx_th_c_when_3);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_otherwise_2(javax.servlet.jsp.tagext.JspTag _jspx_th_c_choose_3, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:otherwise
+    org.apache.taglibs.standard.tag.common.core.OtherwiseTag _jspx_th_c_otherwise_2 = (org.apache.taglibs.standard.tag.common.core.OtherwiseTag) _jspx_tagPool_c_otherwise.get(org.apache.taglibs.standard.tag.common.core.OtherwiseTag.class);
+    _jspx_th_c_otherwise_2.setPageContext(_jspx_page_context);
+    _jspx_th_c_otherwise_2.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_choose_3);
+    int _jspx_eval_c_otherwise_2 = _jspx_th_c_otherwise_2.doStartTag();
+    if (_jspx_eval_c_otherwise_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("商品が");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.hit}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("件見つかりました");
+        int evalDoAfterBody = _jspx_th_c_otherwise_2.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_otherwise_2.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_otherwise.reuse(_jspx_th_c_otherwise_2);
+      return true;
+    }
+    _jspx_tagPool_c_otherwise.reuse(_jspx_th_c_otherwise_2);
     return false;
   }
 
