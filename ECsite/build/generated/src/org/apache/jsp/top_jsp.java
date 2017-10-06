@@ -84,7 +84,7 @@ public final class top_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("            <div class=\"container-fluid\">\r\n");
       out.write("                <div class=\"col-xs-6 col-xs-offset-3\">\r\n");
-      out.write("                    <form action=\"Search\">\r\n");
+      out.write("                    <form action=\"Search\" method=\"POST\">\r\n");
       out.write("                        <span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span>\r\n");
       out.write("                        <input type=\"text\" name=\"query\" class=\" form-control\" placeholder=\"");
       if (_jspx_meth_c_choose_1(_jspx_page_context))

@@ -93,6 +93,7 @@ public final class myhistory_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <hr>\n");
       out.write("            <div class=\"container-fluid\">\n");
       out.write("                <div class=\"col-xs-8 col-xs-offset-2\">\n");
+      out.write("                    <div class=\"container-fluid text-center\"><h3>購入履歴</h3></div> \n");
       out.write("                    ");
       if (_jspx_meth_c_choose_0(_jspx_page_context))
         return;
@@ -158,7 +159,7 @@ public final class myhistory_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.WhenTag _jspx_th_c_when_0 = (org.apache.taglibs.standard.tag.rt.core.WhenTag) _jspx_tagPool_c_when_test.get(org.apache.taglibs.standard.tag.rt.core.WhenTag.class);
     _jspx_th_c_when_0.setPageContext(_jspx_page_context);
     _jspx_th_c_when_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_choose_0);
-    _jspx_th_c_when_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.myhistory!=null}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    _jspx_th_c_when_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.myhistory.size()!=0}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
     int _jspx_eval_c_when_0 = _jspx_th_c_when_0.doStartTag();
     if (_jspx_eval_c_when_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {

@@ -32,8 +32,9 @@
             <hr>
             <div class="container-fluid">
                 <div class="col-xs-8 col-xs-offset-2">
+                    <div class="container-fluid text-center"><h3>購入履歴</h3></div> 
                     <c:choose>
-                        <c:when test="${sessionScope.myhistory!=null}">
+                        <c:when test="${sessionScope.myhistory.size()!=0}">
                             <div style="width:400px;margin: auto;font-size: 12px;">
                                 <table class="container-fluid table">
                                     <tr><td></td><td class="text-center" style="font-size: 20px">商品名</td><td style="font-size: 20px;width: 70px">金額</td></tr>

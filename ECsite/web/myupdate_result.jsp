@@ -32,11 +32,11 @@
             <div class="container-fluid">
                 <div class="col-xs-6 col-xs-offset-3">
                     <table class="container-fluid table">
-                        <tr><th>名前</th><td>${sessionScope.login.name}</td></tr>
-                        <tr><th>パスワード</th><td>${sessionScope.login.password}</td></tr>
-                        <tr><th>メールアドレス</th><td>${sessionScope.login.mail}</td></tr>
-                        <tr><th>住所</th><td>${sessionScope.login.address}</td></tr>
-                        <tr><td colspan="2">上記内容で更新いたしました</td></tr></table>
+                        <tr><th class="text-right">名前</th><td>${sessionScope.login.name}</td></tr>
+                        <tr><th class="text-right">パスワード</th><td>${sessionScope.login.password}</td></tr>
+                        <tr><th class="text-right">メールアドレス</th><td>${sessionScope.login.mail}</td></tr>
+                        <tr><th class="text-right">住所</th><td>${sessionScope.login.address}</td></tr>
+                        <tr><td colspan="2" class="text-center">上記内容で更新いたしました</td></tr></table>
                 </div>
             </div>
         </div>

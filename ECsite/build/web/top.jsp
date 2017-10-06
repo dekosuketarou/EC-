@@ -44,7 +44,7 @@
             </c:choose>
             <div class="container-fluid">
                 <div class="col-xs-6 col-xs-offset-3">
-                    <form action="Search">
+                    <form action="Search" method="POST">
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                         <input type="text" name="query" class=" form-control" placeholder="<c:choose><c:when test="${empty requestScope.error}">キーワードを入力してください</c:when><c:otherwise>${requestScope.error}</c:otherwise></c:choose>">
                         <input type="hidden" value="0" name="offset">

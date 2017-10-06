@@ -48,7 +48,7 @@ public class MyUpdateResult extends HttpServlet {
             udb.setMail(request.getParameter("mail"));
             udb.setAddress(request.getParameter("address"));
 
-            UserDataDTO udd = new UserDataDTO();
+            UserDataDTO udd = (UserDataDTO)session.getAttribute("login");
 
             udb.DTOMapping(udd);
             //更新情報を格納したUserDataBeansを引数に、UDUpdateメソッドを使用する

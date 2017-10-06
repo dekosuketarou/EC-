@@ -44,7 +44,7 @@
                 <hr>
                 <div class="container ">
                     <div class="col-xs-8 col-xs-offset-2">
-                        <form action="Search">
+                        <form action="Search" method="POST">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                             <input type="text" name="query" class=" form-control" value="${sessionScope.keyword}" placeholder="<c:choose><c:when test="${empty requestScope.error}">キーワードを入力してください</c:when><c:otherwise>${requestScope.error}</c:otherwise></c:choose>">
                             <br>    <select name="offset">
