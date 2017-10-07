@@ -43,7 +43,7 @@ public class RegistrationConfirm extends HttpServlet {
             udb.setMail(request.getParameter("mail"));
             udb.setAddress(request.getParameter("address"));
             //格納した情報をsessionに登録
-            session.setAttribute("registration", udb);
+            request.setAttribute("registration", udb);
             //格納した情報がすべて入力された情報であれば登録確認ページregistration_congirm.jspへ
             //空情報がひとつでもあればregistration.jspへ戻される
             if (!udb.getName().equals("") && !udb.getPassword().equals("") && !udb.getMail().equals("") && !udb.getAddress().equals("")) {

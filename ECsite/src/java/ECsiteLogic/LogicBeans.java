@@ -45,8 +45,16 @@ public class LogicBeans {
         //検索キーワードをencodeメソッドにより日本語に対応
         String query = "&query=" + encode(request.getParameter("query"), "UTF-8");
         //offsetにより取得順番を指定（初期値は0である）
-        String offset = "&offset=" + request.getParameter("offset");
-        URL url = new URL(shopAPI + appid + query + offset);
+        String offset;
+        //offsetの数値+hitsの数値が1000を超えるとエラーコードが帰ってくるため
+        //APIリクエストパラメータであるoffsetが990以上である場合は990にする
+        if (Integer.parseInt(request.getParameter("offset"))>990) {
+            offset = "&offset=990";
+        } else {
+            offset = "&offset=" + request.getParameter("offset");
+        }
+        String hits = "&hits=10";
+        URL url = new URL(shopAPI + appid + query + offset + hits);
         HttpURLConnection urlCon = (HttpURLConnection) url.openConnection();
         urlCon.connect();
 
@@ -56,11 +64,17 @@ public class LogicBeans {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode rootNode = mapper.readTree(parser);
         JsonNode result = rootNode.get("ResultSet").get("0").get("Result");
-
         //該当商品があった場合は１０件商品情報を格納しsessionにsearchResultとして登録
         //該当商品がなかった場合これまでのsearchResultを破棄する
-        if (!rootNode.get("ResultSet").get("totalResultsAvailable").textValue().equals("0")) {
-            for (int i = 0; i < 10; i++) {
+
+        //検索結果0だった場合true
+        boolean totalResultFlg = rootNode.get("ResultSet").get("totalResultsAvailable").textValue().equals("0");
+        //jsonデータがerror通知だった場合false
+        boolean jsonStreamError = (rootNode.get("Error") == null);
+
+        if (!totalResultFlg && jsonStreamError) {
+            int ArrayIndex = rootNode.get("ResultSet").get("totalResultsReturned").asInt();
+            for (int i = 0; i < ArrayIndex; i++) {
                 //jacksonAPIの要素指定はString出しか出来ないのでindexを変換
                 String index = String.valueOf(i);
                 ShopDataBeans sdb = new ShopDataBeans();
@@ -70,7 +84,9 @@ public class LogicBeans {
                 sdb.setImageURL(result.get(index).get("Image").get("Small").textValue());//codesearchでも利用
                 sdb.setPrice(result.get(index).get("Price").get("_value").textValue());//codesearchでも利用
                 searchResult.add(sdb);
+
             }
+
             /**
              * 必要な情報をsessionに登録する
              *
@@ -79,8 +95,9 @@ public class LogicBeans {
              */
             session.setAttribute("hit", rootNode.get("ResultSet").get("totalResultsAvailable").textValue());
             session.setAttribute("searchResult", searchResult);
-        }else{
-            session.setAttribute("hit","0");
+
+        } else {
+            session.setAttribute("hit", "0");
             session.removeAttribute("searchResult");
         }
     }

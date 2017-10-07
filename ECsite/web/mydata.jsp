@@ -19,6 +19,8 @@
                 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
                 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <c:if test="${sessionScope.login==null}"><%request.getRequestDispatcher("Login").forward(request, response);%></c:if>
+
     </head>
     <body>
         <div class="base">
@@ -35,7 +37,7 @@
                     <div style="width: 350px;margin: auto;">
                     <table class="container-fluid table">
                         <tr><td class="text-right" style="width: 175px;">ユーザー名</td><td style="width: 175px;">${sessionScope.login.getName()}</td></tr>
-                        <tr><td class="text-right">パスワード</td><td>${sessionScope.login.getPassword()}</td></tr>
+                        <tr><td class="text-right">パスワード</td><td>###表示されません###</td></tr>
                         <tr><td class="text-right">メールアドレス</td><td>${sessionScope.login.getMail()}</td></tr>
                         <tr><td class="text-right">住所</td><td>${sessionScope.login.getAddress()}</td></tr>
                         <tr><td class="text-right">総購入金額</td><td>${sessionScope.login.getTotal()}</td></tr>

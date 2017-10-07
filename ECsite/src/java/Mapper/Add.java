@@ -33,23 +33,36 @@ public class Add extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            HttpSession session=request.getSession();
-                    
+
+            HttpSession session = request.getSession();
+
             request.setCharacterEncoding("UTF-8");
-            
+
             //商品コードを格納するクラスCartItem
             CartItem cartItem = new CartItem();
-            //session情報に登録している場合はcartItemの情報を取得し、
-            if(session.getAttribute("cartItem")!=null){
-                cartItem=(CartItem)session.getAttribute("cartItem");
+
+            //ログインしていない場合 key"cartItem"で情報を登録
+            if (session.getAttribute("login") == null) {
+                //買い物かごの中身情報がある場合は取得し、買い物情報を追加する
+                //その後追加した情報をsessionに上書きする
+                if (session.getAttribute("cartItem") != null) {
+                    cartItem = (CartItem) session.getAttribute("cartItem");
+                }
+                cartItem.setCartItem(request.getParameter("code"));
+                session.setAttribute("cartItem", cartItem);
+            //ログインしている場合 key"userID"で情報を登録
+            //userIDはログイン時に登録している文字列である
+            } else {
+                String userID = (String) session.getAttribute("userID");
+                if (session.getAttribute(userID) != null) {
+                    cartItem = (CartItem) session.getAttribute(userID);
+                }
+                cartItem.setCartItem(request.getParameter("code"));
+
+                session.setAttribute(userID, cartItem);
+
             }
-            //その後「カートに追加」により追加された商品のコードを新たに格納する
-            cartItem.setCartItem(request.getParameter("code"));
-            //格納した後、cartItem情報をsessionに上書きする
-            session.setAttribute("cartItem",cartItem);
             request.getRequestDispatcher("add.jsp").forward(request, response);
-            
         }
     }
 

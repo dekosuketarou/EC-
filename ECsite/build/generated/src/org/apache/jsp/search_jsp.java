@@ -81,6 +81,11 @@ public final class search_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <script src=\"https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js\"></script>\r\n");
       out.write("                <script src=\"https://oss.maxcdn.com/respond/1.4.2/respond.min.js\"></script>\r\n");
       out.write("        <![endif]-->\r\n");
+      out.write("        ");
+
+        int offset=Integer.parseInt((String)session.getAttribute("page"));
+        
+      out.write("\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
       out.write("        <div class=\"base\">\r\n");
@@ -112,7 +117,7 @@ public final class search_jsp extends org.apache.jasper.runtime.HttpJspBase
               out.write("                <hr>\r\n");
               out.write("                <div class=\"container \">\r\n");
               out.write("                    <div class=\"col-xs-8 col-xs-offset-2\">\r\n");
-              out.write("                        <form action=\"Search\">\r\n");
+              out.write("                        <form action=\"Search?offset=0\" method=\"POST\">\r\n");
               out.write("                            <span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span>\r\n");
               out.write("                            <input type=\"text\" name=\"query\" class=\" form-control\" value=\"");
               out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.keyword}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -120,28 +125,27 @@ public final class search_jsp extends org.apache.jasper.runtime.HttpJspBase
               if (_jspx_meth_c_choose_2((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_when_0, _jspx_page_context))
                 return;
               out.write("\">\r\n");
-              out.write("                            <br>    <select name=\"offset\">\r\n");
-              out.write("                                <option  value=\"0\">----------------</option>\r\n");
+              out.write("                        </form>\r\n");
+              out.write("                            \r\n");
+              out.write("                                <div class=\"text-center\">\r\n");
               out.write("                                ");
-for (int i = 0; i < Integer.parseInt((String) session.getAttribute("hit")) / 10; i++) {
+for (int i = 0+(offset/10); i < Integer.parseInt((String) session.getAttribute("hit")) / 10; i++) {
               out.write("\r\n");
+              out.write("                                <a href=\"Search?query=");
+              out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.keyword}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+              out.write("&offset=");
+              out.print((i*10));
+              out.write("\">&nbsp;<b>");
+              out.print((i+1));
+              out.write("</b>&nbsp;</a>\r\n");
               out.write("                                ");
-if (i == 30) {
-                                        break;
-                                    }
+if(i==19+(offset/10)){break;}if(i==99){break;}
               out.write("\r\n");
-              out.write("                                <option  value=\"");
-              out.print(i * 10);
-              out.write('"');
-              out.write('>');
-              out.print(i + 1);
-              out.write("ページ目</option>\r\n");
               out.write("                                ");
 }
-              out.write("\r\n");
-              out.write("                            </select>\r\n");
-              out.write("                        </form>\r\n");
-              out.write("\r\n");
+              out.write("</div>\r\n");
+              out.write("                            \r\n");
+              out.write("                                \r\n");
               out.write("\r\n");
               out.write("                        <h3 class=\"text-center\">検索キーワード「");
               out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.keyword}", java.lang.String.class, (PageContext)_jspx_page_context, null));

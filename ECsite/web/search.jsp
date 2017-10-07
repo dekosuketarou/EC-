@@ -16,52 +16,59 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>JSP Page</title>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-                <link href="bootstrap/css/stylesheet.css" rel="stylesheet">
+        <link href="bootstrap/css/stylesheet.css" rel="stylesheet">
         <!--[if lt IE 9]>
                 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
                 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <%
+            int offset = Integer.parseInt((String) session.getAttribute("page"));
+        %>
     </head>
     <body>
         <div class="base">
-        <div class="container-fluid text-center"><a href="top.jsp"><img src="かごゆめ.png"></a></div>
-        <hr>
-        <c:choose>
-            <c:when test="${sessionScope.hit!=null}">
-                <c:choose>
-                    <c:when test="${sessionScope.login!=null}">
-                        <div class="container-fluid text-center">
-                            <div class="col-xs-4 center-block"><a href="Logout">ログアウト</a></div>
-                            <div class="col-xs-4 center-block"><a href="MyData">会員情報</a></div>
-                            <div class="col-xs-4 center-block"><a href="Cart">買い物カゴ</a></div>
-                        </div>
-                    </c:when>
-                    <c:otherwise> 
-                        <div class="container-fluid text-center"><a href="Login?return=search.jsp">ログインページへ</a></div>
+            <div class="container-fluid text-center"><a href="top.jsp"><img src="かごゆめ.png"></a></div>
+            <hr>
+            <c:choose>
+                <c:when test="${sessionScope.hit!=null}">
+                    <c:choose>
+                        <c:when test="${sessionScope.login!=null}">
+                            <div class="container-fluid text-center">
+                                <div class="col-xs-4 center-block"><a href="Logout">ログアウト</a></div>
+                                <div class="col-xs-4 center-block"><a href="MyData">会員情報</a></div>
+                                <div class="col-xs-4 center-block"><a href="Cart">買い物カゴ</a></div>
+                            </div>
+                        </c:when>
+                        <c:otherwise> 
+                            <div class="container-fluid text-center"><a href="Login?return=search.jsp">ログインページへ</a></div>
 
-                    </c:otherwise>
-                </c:choose>
-                <hr>
-                <div class="container ">
-                    <div class="col-xs-8 col-xs-offset-2">
-                        <form action="Search" method="POST">
-                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                            <input type="text" name="query" class=" form-control" value="${sessionScope.keyword}" placeholder="<c:choose><c:when test="${empty requestScope.error}">キーワードを入力してください</c:when><c:otherwise>${requestScope.error}</c:otherwise></c:choose>">
-                            <br>    <select name="offset">
-                                <option  value="0">----------------</option>
-                                <%for (int i = 0; i < Integer.parseInt((String) session.getAttribute("hit")) / 10; i++) {%>
-                                <%if (i == 30) {
-                                        break;
-                                    }%>
-                                <option  value="<%=i * 10%>"><%=i + 1%>ページ目</option>
-                                <%}%>
-                            </select>
-                        </form>
+                        </c:otherwise>
+                    </c:choose>
+                    <hr>
+                    <div class="container ">
+                        <div class="col-xs-8 col-xs-offset-2">
+                            <form action="Search?offset=0" method="POST">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                <input type="text" name="query" class=" form-control" value="${sessionScope.keyword}" placeholder="<c:choose><c:when test="${empty requestScope.error}">キーワードを入力してください</c:when><c:otherwise>${requestScope.error}</c:otherwise></c:choose>">
+                                    </form>
+
+                                    <div class="text-center">
+                                            <a href="Search?query=${sessionScope.keyword}&offset=0"><b>最初</b></a>
+                                        <%for (int i = 0 + (offset / 10); i < Integer.parseInt((String) session.getAttribute("hit")) / 10; i++) {
+                                                if (i >= 100) {
+                                                    break;
+                                                }%>
+                                <a href="Search?query=${sessionScope.keyword}&offset=<%=(i * 10)%>">&nbsp;<b><%=(i + 1)%></b>&nbsp;</a>
+                                <%if (i == 19 + (offset / 10)) {
+                                            break;
+                                        }
+                                    }%></div>
 
 
-                        <h3 class="text-center">検索キーワード「${sessionScope.keyword}」で検索した結果</h3>
-                        <h3 class="text-center">
-                            <c:choose><c:when test="${sessionScope.hit==0}">商品が見つかりませんでした</c:when><c:otherwise>商品が${sessionScope.hit}件見つかりました</c:otherwise></c:choose></h3>
+
+                            <h3 class="text-center">検索キーワード「${sessionScope.keyword}」で検索した結果</h3>
+                            <h3 class="text-center">
+                                <c:choose><c:when test="${sessionScope.hit==0}">商品が見つかりませんでした</c:when><c:otherwise>商品が${sessionScope.hit}件見つかりました</c:otherwise></c:choose></h3>
 
                             <c:forEach items="${sessionScope.searchResult}" var="sdb">
                                 <table style="margin: 10px;"> 
@@ -72,9 +79,9 @@
                         </c:when>
                         <c:otherwise><%request.getRequestDispatcher("top.jsp").forward(request, response);%></c:otherwise>
                     </c:choose>
-  
+
+                </div>
             </div>
-        </div>
         </div>
         <hr>
     </body>

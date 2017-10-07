@@ -34,7 +34,10 @@
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <div class="container-fluid text-center"><a href="Login">ログインページへ</a></div>
+                    <div class="container-fluid text-center ">
+                    <div class="col-xs-6 center-block"><a href="Login">ログインページへ</a></div>
+                    <div class="col-xs-6 center-block"><a href="top.jsp">検索ページ</a></div>
+                    </div>
                 </c:otherwise>
             </c:choose>
             <hr>

@@ -40,8 +40,9 @@ public class Cart extends HttpServlet {
             
             ArrayList<ShopDataBeans> sdbAL =new ArrayList<>();
             //カゴの中に入っている商品情報表示のためにitemCodeから商品情報を取得し、その後情報をsessionに登録する
-            if(session.getAttribute("cartItem")!=null){
-                sdbAL=LogicBeans.getInstance().cartSearch((CartItem)session.getAttribute("cartItem"));
+            String userID=(String)session.getAttribute("userID");
+            if(session.getAttribute(userID)!=null){
+                sdbAL=LogicBeans.getInstance().cartSearch((CartItem)session.getAttribute(userID));
             }
             session.setAttribute("sdbAL", sdbAL);
             request.getRequestDispatcher("cart.jsp").forward(request, response);

@@ -36,8 +36,8 @@
                                     <div style="width:280px; text-align: center;"><c:if test="${requestScope.Flg==-1}"> 名前、パスワードが一致しません</c:if></div>
                                     <form action="LoginResult" method="post">
                                         <table class="table">
-                                            <tr><td><input type="text" required="required" placeholder="ユーザー名" name="name" value="${cookie.name.value}"></td><td rowspan="2"><input type="submit" value="ログイン" class="form" style="height:70px;width: 70px;font-size: 12px;"></td></tr>
-                                        <tr><td><input type="password" required="required" placeholder="パスワード" name="password" value="${cookie.password.value}"></td></tr>
+                                            <tr><td><input type="text" required="required" placeholder="ユーザー名" class="form-control input-sm" name="name" value="${cookie.name.value}"></td><td rowspan="2"><input type="submit" value="ログイン" class="form" style="height:77px;width: 77px;font-size: 12px;"></td></tr>
+                                        <tr><td><input type="password" required="required" placeholder="パスワード" class="form-control input-sm" name="password" value="${cookie.password.value}"></td></tr>
                                         <tr><td colspan="2"><input type="checkbox" name="cookie" value="true" ><span style="font-size:12px">ログイン情報を保存する</span></td></tr>
                                         <tr><td colspan="2"><a href="registration.jsp"><span style="font-size: 12px">新規登録ページ</span></a></td></tr>
                                     </table>

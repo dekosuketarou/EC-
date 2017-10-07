@@ -37,13 +37,15 @@ public class Search extends HttpServlet {
             request.setCharacterEncoding("UTF-8");
             //検索キーワードqueryを取得しsessionに登録
             session.setAttribute("keyword", request.getParameter("query"));
-            
+            //クエストリングから取得するページを登録
+            session.setAttribute("page", request.getParameter("offset"));
             //検索キーワードが入力されていた場合、LogicBeansクラスメソッドsearchItemに検索キーワードqueryを引き渡し、商品情報を取得する
             //検索結果の該当データが０の場合はsessionにkey"hit"でvalue"0"が登録される、該当したデータがある場合は該当数を登録する
             //その後該当した商品情報をArrayList<ShopDataBeans>としてsessionにkey"searchResult"で登録される
             //
             
             if (!request.getParameter("query").equals("")) {
+                
                 LogicBeans.getInstance().searchItem(request);
                 request.getRequestDispatcher("search.jsp").forward(request, response);
             } else {

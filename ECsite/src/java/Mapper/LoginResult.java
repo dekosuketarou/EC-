@@ -5,6 +5,7 @@
  */
 package Mapper;
 
+import Data.CartItem;
 import Data.DAO;
 import Data.UserDataDTO;
 import java.io.IOException;
@@ -62,7 +63,12 @@ public class LoginResult extends HttpServlet {
                 }
                 //loginメソッドにより取得したユーザー情報をsessionに登録
                 session.setAttribute("login", udd);
-                
+                session.setAttribute("userID",Integer.toString(udd.getUserID()));
+                if (session.getAttribute("cartItem") != null) {
+                    CartItem cartItem= (CartItem) session.getAttribute("cartItem");
+                    session.removeAttribute("cartItem");
+                    session.setAttribute(Integer.toString(udd.getUserID()),cartItem);
+                }
                 //Loginサーブレットにアクセスしたときに登録したsession情報returnがある場合、引数としてパスを指定する
                 if (session.getAttribute("return") != null) {
                     request.getRequestDispatcher(session.getAttribute("return").toString()).forward(request, response);

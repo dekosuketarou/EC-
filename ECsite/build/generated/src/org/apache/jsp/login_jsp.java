@@ -72,12 +72,14 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n");
       out.write("        <title>JSP Page</title>\r\n");
       out.write("        <link href=\"bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\">\r\n");
+      out.write("                <link href=\"bootstrap/css/stylesheet.css\" rel=\"stylesheet\">\r\n");
       out.write("        <!--[if lt IE 9]>\r\n");
       out.write("                <script src=\"https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js\"></script>\r\n");
       out.write("                <script src=\"https://oss.maxcdn.com/respond/1.4.2/respond.min.js\"></script>\r\n");
       out.write("        <![endif]-->\r\n");
       out.write("    </head>\r\n");
-      out.write("    <body style=\"min-width: 1000px;\">\r\n");
+      out.write("    <body>\r\n");
+      out.write("        <div class=\"base\">\r\n");
       out.write("        <div class=\"container-fluid text-center\"><a href=\"top.jsp\"><img src=\"かごゆめ.png\"></a></div>\r\n");
       out.write("        <hr>\r\n");
       out.write("        <div class=\"container-fluid\">\r\n");
@@ -131,6 +133,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_tagPool_c_choose.reuse(_jspx_th_c_choose_0);
       out.write("\r\n");
       out.write("        </div>\r\n");
+      out.write("        </div>\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {
@@ -172,10 +175,10 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
         out.write("</div>\r\n");
         out.write("                                    <form action=\"LoginResult\" method=\"post\">\r\n");
         out.write("                                        <table class=\"table\">\r\n");
-        out.write("                                            <tr><td><input type=\"text\" required=\"required\" placeholder=\"ユーザー名\" name=\"name\" value=\"");
+        out.write("                                            <tr><td><input type=\"text\" required=\"required\" placeholder=\"ユーザー名\" class=\"form-control input-sm\" name=\"name\" value=\"");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${cookie.name.value}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("\"></td><td rowspan=\"2\"><input type=\"submit\" value=\"ログイン\" class=\"form\" style=\"height:70px;width: 70px;font-size: 12px;\"></td></tr>\r\n");
-        out.write("                                        <tr><td><input type=\"password\" required=\"required\" placeholder=\"パスワード\" name=\"password\" value=\"");
+        out.write("\"></td><td rowspan=\"2\"><input type=\"submit\" value=\"ログイン\" class=\"form\" style=\"height:77px;width: 77px;font-size: 12px;\"></td></tr>\r\n");
+        out.write("                                        <tr><td><input type=\"password\" required=\"required\" placeholder=\"パスワード\" class=\"form-control input-sm\" name=\"password\" value=\"");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${cookie.password.value}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("\"></td></tr>\r\n");
         out.write("                                        <tr><td colspan=\"2\"><input type=\"checkbox\" name=\"cookie\" value=\"true\" ><span style=\"font-size:12px\">ログイン情報を保存する</span></td></tr>\r\n");

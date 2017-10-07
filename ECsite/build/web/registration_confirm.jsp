@@ -30,10 +30,10 @@
             <div class="col-xs-6 col-xs-offset-3">
                 <p class="text-center">下記内容で登録しますがよろしいでしょうか？</p>
                 <table class="container-fluid table">
-                    <tr><th class="text-right">名前</th><td>${sessionScope.registration.name}</td></tr>
-                    <tr><th class="text-right">パスワード</th><td>${sessionScope.registration.password}</td></tr>
-                    <tr><th class="text-right">メールアドレス</th><td>${sessionScope.registration.mail}</td></tr>
-                    <tr><th class="text-right">住所</th><td>${sessionScope.registration.address}</td></tr>
+                    <tr><th class="text-right">名前</th><td>${requestScope.registration.name}</td></tr>
+                    <tr><th class="text-right">パスワード</th><td>${requestScope.registration.password}</td></tr>
+                    <tr><th class="text-right">メールアドレス</th><td>${requestScope.registration.mail}</td></tr>
+                    <tr><th class="text-right">住所</th><td>${requestScope.registration.address}</td></tr>
 
                     <tr>
                         <td class="text-center">

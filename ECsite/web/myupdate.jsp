@@ -19,6 +19,7 @@
                 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
                 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <c:if test="${sessionScope.login==null}"><%request.getRequestDispatcher("Login").forward(request, response);%></c:if>
     </head>
     <body>
         <div class="base">
@@ -35,7 +36,7 @@
                     <form action="MyUpdateResult" method="post">
                         <table class="container-fluid table">
                             <tr><th class="text-right">名前</th><td><input type="text" name="name" class="form-control" required="required" value="${sessionScope.login.name}"></td></tr>
-                            <tr><th class="text-right">パスワード</th><td><input type="text" required="required" name="password" class="form-control" value="${sessionScope.login.password}"></td></tr>
+                            <tr><th class="text-right">パスワード</th><td><input type="password" required="required" name="password" class="form-control" value="${sessionScope.login.password}"></td></tr>
                             <tr><th class="text-right">メールアドレス</th><td><input type="email" name="mail" class="form-control" required="required" value="${sessionScope.login.mail}"></td></tr>
                             <tr><th class="text-right">住所</th><td><input type="text" name="address" class="form-control" required="required" value="${sessionScope.login.address}"></td></tr>
                         </table>
