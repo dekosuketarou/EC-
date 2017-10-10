@@ -64,6 +64,10 @@
         <servlet-name>MyHistory</servlet-name>
         <servlet-class>Mapper.MyHistory</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Registration</servlet-name>
+        <servlet-class>Mapper.Registration</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Search</servlet-name>
         <url-pattern>/Search</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>MyHistory</servlet-name>
         <url-pattern>/MyHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Registration</servlet-name>
+        <url-pattern>/Registration</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
