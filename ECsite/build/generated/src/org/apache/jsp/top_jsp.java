@@ -67,7 +67,7 @@ public final class top_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <meta charset=\"utf-8\">\r\n");
       out.write("        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n");
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n");
-      out.write("        <title>JSP Page</title>\r\n");
+      out.write("        <title>かごゆめ</title>\r\n");
       out.write("        <link href=\"bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\">\r\n");
       out.write("        <link href=\"bootstrap/css/stylesheet.css\" rel=\"stylesheet\">\r\n");
       out.write("        <!--[if lt IE 9]>\r\n");

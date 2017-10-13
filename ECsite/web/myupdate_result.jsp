@@ -12,7 +12,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>JSP Page</title>
+        <title>こーしんかんりょー</title>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="bootstrap/css/stylesheet.css" rel="stylesheet">
         <!--[if lt IE 9]>
@@ -33,8 +33,8 @@
             <hr>
             <div class="container-fluid">
                 <div class="col-xs-6 col-xs-offset-3">
-                    <table class="container-fluid table">
-                        <tr><th class="text-right">名前</th><td>${sessionScope.login.name}</td></tr>
+                    <table class="container-fluid table" style="word-break: break-all;">
+                        <tr><th class="text-right" style="width: 120px;">名前</th><td style="width: 230px;">${sessionScope.login.name}</td></tr>
                         <tr><th class="text-right">パスワード</th><td>${sessionScope.login.password}</td></tr>
                         <tr><th class="text-right">メールアドレス</th><td>${sessionScope.login.mail}</td></tr>
                         <tr><th class="text-right">住所</th><td>${sessionScope.login.address}</td></tr>

@@ -12,7 +12,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>JSP Page</title>
+        <title>かいいんじょーほーへんこう</title>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="bootstrap/css/stylesheet.css" rel="stylesheet">
         <!--[if lt IE 9]>
@@ -35,10 +35,10 @@
                 <div class="col-xs-6 col-xs-offset-3">
                     <form action="MyUpdateResult" method="post">
                         <table class="container-fluid table">
-                            <tr><th class="text-right">名前</th><td><input type="text" name="name" class="form-control" required="required" value="${sessionScope.login.name}"></td></tr>
-                            <tr><th class="text-right">パスワード</th><td><input type="password" required="required" name="password" class="form-control" value="${sessionScope.login.password}"></td></tr>
-                            <tr><th class="text-right">メールアドレス</th><td><input type="email" name="mail" class="form-control" required="required" value="${sessionScope.login.mail}"></td></tr>
-                            <tr><th class="text-right">住所</th><td><input type="text" name="address" class="form-control" required="required" value="${sessionScope.login.address}"></td></tr>
+                            <tr><th class="text-right">名前</th><td><input type="text" name="name" class="form-control" required="required" maxlength="20" value="${sessionScope.login.name}"></td></tr>
+                        <tr><th class="text-right">パスワード</th><td><input type="password" required="required" name="password" class="form-control" maxlength="20" value="${sessionScope.login.password}"></td></tr>
+                        <tr><th class="text-right">メールアドレス</th><td><input type="email" name="mail" class="form-control" required="required" maxlength="50" value="${sessionScope.login.mail}"></td></tr>
+                        <tr><th class="text-right">住所</th><td><input type="text" name="address" class="form-control" required="required" maxlength="100" value="${sessionScope.login.address}"></td></tr>
                         </table>
                         
                         <div class="container-fluid"><input type="submit" value="登録確認" class="form-control"></div>

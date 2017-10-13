@@ -7,12 +7,6 @@ import javax.servlet.jsp.*;
 public final class mydata_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
-static private org.apache.jasper.runtime.ProtectedFunctionMapper _jspx_fnmap_0;
-
-static {
-  _jspx_fnmap_0= org.apache.jasper.runtime.ProtectedFunctionMapper.getMapForFunction("fn:length", org.apache.taglibs.standard.functions.Functions.class, "length", new Class[] {java.lang.Object.class});
-}
-
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
   private static java.util.List<String> _jspx_dependants;
@@ -61,7 +55,6 @@ static {
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
@@ -96,6 +89,7 @@ request.getRequestDispatcher("Login").forward(request, response);
       }
       _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_0);
       out.write("\r\n");
+      out.write("\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
       out.write("        <div class=\"base\">\r\n");
@@ -110,13 +104,11 @@ request.getRequestDispatcher("Login").forward(request, response);
       out.write("            <div class=\"container-fluid\">\r\n");
       out.write("                <div class=\"col-xs-6 col-xs-offset-3\">\r\n");
       out.write("                    <div style=\"width: 350px;margin: auto;\">\r\n");
-      out.write("                    <table class=\"container-fluid table\">\r\n");
-      out.write("                        <tr><td class=\"text-right\" style=\"width: 175px;\">ユーザー名</td><td style=\"width: 175px;\">");
+      out.write("                    <table class=\"container-fluid table\" style=\"word-break: break-all;\">\r\n");
+      out.write("                        <tr><td class=\"text-right\" style=\"width: 120px;\">名前</td><td style=\"width: 230px;\">");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.login.getName()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("</td></tr>\r\n");
-      out.write("                        <tr><td class=\"text-right\">パスワード</td><td>0");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${fn:length(sessionScope.login.getPassword)}", java.lang.String.class, (PageContext)_jspx_page_context, _jspx_fnmap_0));
-      out.write(")} </td></tr>\r\n");
+      out.write("                        <tr><td class=\"text-right\">パスワード</td><td>###表示されません###</td></tr>\r\n");
       out.write("                        <tr><td class=\"text-right\">メールアドレス</td><td>");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.login.getMail()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("</td></tr>\r\n");
@@ -129,9 +121,10 @@ request.getRequestDispatcher("Login").forward(request, response);
       out.write("                        <tr><td class=\"text-right\">登録日時</td><td>");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.login.getNewDate()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("</td></tr>\r\n");
-      out.write("                        <tr><td class=\"text-center\"><a href=\"myupdate.jsp\">会員情報変更</a></td><td class=\"text-center\"><a href=\"MyHistory\">購入履歴</a></td></tr>\r\n");
-      out.write("                        <tr><td colspan=\"2\" class=\"text-center\"><a href=\"mydelete.jsp\">退会申請ページ</a></td></tr>     \r\n");
       out.write("                    </table>\r\n");
+      out.write("                    <table class=\"container-fluid table\" >\r\n");
+      out.write("                        <tr><td class=\"text-center\"><a href=\"myupdate.jsp\">会員情報変更</a></td><td class=\"text-center\"><a href=\"MyHistory\">購入履歴</a></td></tr>\r\n");
+      out.write("                        <tr><td colspan=\"2\" class=\"text-center\"><a href=\"mydelete.jsp\">退会申請</a></td></tr></table>     \r\n");
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
       out.write("            </div>\r\n");
