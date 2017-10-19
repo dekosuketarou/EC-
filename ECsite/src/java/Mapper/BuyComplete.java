@@ -60,7 +60,8 @@ public class BuyComplete extends HttpServlet {
                 session.setAttribute("login",udd);
                 //購入した商品情報をsessionから除外する
                 session.removeAttribute("sdbAL");
-                session.removeAttribute("cartItem");
+                String userID=(String)session.getAttribute("userID");
+                session.removeAttribute(userID);
             } catch(SQLException e){
                 System.out.println("DB接続に異常があります");
             }
